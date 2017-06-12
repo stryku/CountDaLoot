@@ -8,7 +8,9 @@ set (test_src_dir ${src_root}/tests)
 set (test_inc_dir ${test_src_dir}/details)
 
 
+
 set(TEST_SRC_FILES 
+	${test_src_dir}/loot/LootTabReaderTests.cpp
     ${test_src_dir}/main.cpp)
     
 set(TEST_INC_FILES )
