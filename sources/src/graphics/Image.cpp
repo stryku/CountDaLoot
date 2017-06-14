@@ -1,5 +1,7 @@
 #include "graphics/Image.hpp"
 
+#include "structs/Rect.hpp"
+
 #include <Windows.h>
 
 namespace cdl

@@ -7,6 +7,8 @@
 
 namespace cdl
 {
+    struct Rect;
+
     namespace graphics
     {
         struct Image
