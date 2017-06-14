@@ -6,6 +6,8 @@ set (inc
         ${inc_dir}/loot/TabLootReader.hpp
         ${inc_dir}/loot/LootTabProvider.hpp
 
+        ${inc_dir}/structs/Pos.hpp
+        ${inc_dir}/structs/Rect.hpp
         ${inc_dir}/structs/Rgba.hpp
 		
                     
