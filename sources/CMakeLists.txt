@@ -12,6 +12,8 @@ set (inc
             PARENT_SCOPE)
 					
 set (src 
+        ${src_dir}/graphics/Image.cpp
+		
         ${src_dir}/loot/TabLootReader.cpp
             
             PARENT_SCOPE)
