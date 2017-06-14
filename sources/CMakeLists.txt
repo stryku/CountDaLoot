@@ -1,4 +1,6 @@
 set (inc
+        ${inc_dir}/capture/ScreenCapturer.hpp
+
         ${inc_dir}/graphics/Image.hpp
 		
         ${inc_dir}/loot/ILootObserver.hpp
@@ -14,6 +16,8 @@ set (inc
             PARENT_SCOPE)
 					
 set (src 
+        ${src_dir}/capture/ScreenCapturer.cpp
+
         ${src_dir}/graphics/Image.cpp
 		
         ${src_dir}/loot/TabLootReader.cpp
