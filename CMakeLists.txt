@@ -6,6 +6,13 @@ project(${PROJECT_NAME_STR})
 
 set(EXT_PROJECTS_DIR ${PROJECT_SOURCE_DIR}/external_projects)
 
+set(BOOST_ROOT C:/moje/libs/boost_1_61_0)
+find_package(Boost REQUIRED)
+if (NOT Boost_FOUND)
+    message (ERROR "Boost not found!")
+endif()
+include_directories (${Boost_INCLUDE_DIRS})
+
 option(USE_CLIPBOARD "Copy images to clipboard" OFF)
 if (PREVENT_DEBUG)
     add_definitions(-DAMB_USE_CLIPBOARD)
@@ -13,8 +20,8 @@ endif()
 
 set( CMAKE_PREFIX_PATH C:/Qt/Qt5.9.0/5.9/msvc2015)
 
-set(TLC_VERSION "v0.4.0-tests" CACHE STRING "Version tag")
-add_definitions(-DAMB_VERSION=${AMB_VERSION})
+set(CDL_VERSION "v0.1" CACHE STRING "Version tag")
+add_definitions(-DCDL_VERSION=${CDL_VERSION})
 
 set (program_name "Count Da Loot")
 
@@ -59,6 +66,11 @@ add_library (MocObjects OBJECT
     ${hdr_moc}
     ${ui_moc}  
 )
+
+source_group(TREE ${src_root} FILES ${src_qt}
+                                    ${inc_qt}
+                                    ${src}
+                                    ${inc})
 
 add_executable(${PROJECT_NAME_STR} ${src_qt}
                                    ${inc_qt}
