@@ -14,8 +14,8 @@ endif()
 include_directories (${Boost_INCLUDE_DIRS})
 
 option(USE_CLIPBOARD "Copy images to clipboard" OFF)
-if (PREVENT_DEBUG)
-    add_definitions(-DAMB_USE_CLIPBOARD)
+if (USE_CLIPBOARD)
+    add_definitions(-DUSE_CLIPBOARD)
 endif()
 
 set( CMAKE_PREFIX_PATH C:/Qt/Qt5.9.0/5.9/msvc2015)
