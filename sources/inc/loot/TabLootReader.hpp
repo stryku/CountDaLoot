@@ -9,7 +9,7 @@ namespace cdl
         class TabLootReader
         {
         public:
-            void registerObserver(ILootObserver& observer) {}
+            void registerObserver(ILootObserver& observer);
         };
     }
 }

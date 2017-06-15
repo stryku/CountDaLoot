@@ -4,6 +4,8 @@
 
 #include <Windows.h>
 
+#include <fstream>
+
 namespace cdl
 {
     namespace graphics
@@ -96,23 +98,61 @@ namespace cdl
         }
 
         Image Image::getSprite(size_t reqx, size_t reqy, size_t reqw, size_t reqh) const
+        {
+            Image img;
+
+            img.w = reqw;
+            img.h = reqh;
+
+            img.pixels.reserve(reqw*reqh);
+
+            Pos base = { static_cast<int>(reqx),
+                static_cast<int>(reqy + reqh - 1) };
+
+            auto it = img.pixels.begin();
+            for (size_t y = 0; y < reqh; ++y)
+                for (size_t x = 0; x < reqw; ++x)
+                    img.pixels.emplace_back(cpixel(base.x + x, base.y - y));
+
+            return img;
+        }
+
+        Image Image::load(const std::string& path)
+        {
+            Image ret;
+
+            int i;
+            std::ifstream file{ path };
+
+            char info[54];
+            file.read(info, 54);
+                                                       // extract image height and width from header
+            int width = *(int*)&info[18];
+            int height = *(int*)&info[22];
+
+            ret.w = width;
+            ret.h = height;
+            ret.resize();
+
+            int row_padded = (width * 3 + 3) & (~3);
+            char* data = new char[row_padded];
+            unsigned char tmp;
+
+            size_t pixelIndex{ 0 };
+
+            for (int i = 0; i < height; i++)
             {
-                Image img;
-
-                img.w = reqw;
-                img.h = reqh;
-
-                img.pixels.reserve(reqw*reqh);
-
-                Pos base = { static_cast<int>(reqx),
-                    static_cast<int>(reqy + reqh - 1) };
-
-                auto it = img.pixels.begin();
-                for (size_t y = 0; y < reqh; ++y)
-                    for (size_t x = 0; x < reqw; ++x)
-                        img.pixels.emplace_back(cpixel(base.x + x, base.y - y));
-
-                return img;
+                file.read(data, row_padded);
+                for (int j = 0; j < width * 3; j += 3)
+                {
+                    const Rgba pixel{ data[j + 2], data[j + 1], data[j], 255 };
+                    ret.pixel(j, i) = pixel;
+                }
             }
+
+            ret.toCb();
+
+            return ret;
+        }
     }
 }

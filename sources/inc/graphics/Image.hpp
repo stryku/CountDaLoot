@@ -32,6 +32,8 @@ namespace cdl
 
             Image getSprite(const Rect &rect) const;
             Image getSprite(size_t reqx, size_t reqy, size_t reqw, size_t reqh) const;
+
+            static Image load(const std::string& path);
         };
     }
 }
