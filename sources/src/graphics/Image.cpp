@@ -1,6 +1,8 @@
 #include "graphics/Image.hpp"
 
 #include "structs/Rect.hpp"
+#include "structs/Size.hpp"
+#include "structs/Pos.hpp"
 
 #include <Windows.h>
 
@@ -19,6 +21,9 @@ namespace cdl
         {
             return pixels[x + (h - 1 - y)*w];
         }
+
+        Rgba& Image::pixel(const Offset& offset) { return pixel(offset.x, offset.y); }
+        const Rgba& Image::cpixel(const Offset& offset) const { return cpixel(offset.x, offset.y); }
 
         bool Image::operator==(const Image& other) const
         {
@@ -126,7 +131,7 @@ namespace cdl
 
             char info[54];
             file.read(info, 54);
-                                                       // extract image height and width from header
+
             int width = *(int*)&info[18];
             int height = *(int*)&info[22];
 
@@ -136,8 +141,7 @@ namespace cdl
 
             int row_padded = (width * 3 + 3) & (~3);
             char* data = new char[row_padded];
-            unsigned char tmp;
-
+            
             size_t pixelIndex{ 0 };
 
             for (int i = 0; i < height; i++)
@@ -153,6 +157,74 @@ namespace cdl
             ret.toCb();
 
             return ret;
+        }
+
+        boost::optional<Pos> Image::find(const graphics::Image& img, 
+                                          Corner startCorner) const
+        {
+            const auto deltas = getFindDeltas(startCorner);
+            const auto xDelta = deltas.first;
+            const auto yDelta= deltas.second;
+
+            auto pos = Pos::from(getFindStartPos(startCorner, { img.w, img.h }));
+            
+            for (; isInside(pos); ++pos.y)
+                for (; isInside(pos); ++pos.x)
+                    if (isImageThere(pos, img))
+                        return pos;
+
+            return{};
+        }
+
+        std::pair<int, int> Image::getFindDeltas(Corner startCorner) const
+        {
+            switch (startCorner)
+            {
+                case Corner::BottomRight: return{ -1, -1 };
+                case Corner::BottomLeft: return{ 1, -1 };
+                case Corner::TopRight: return{ -1, 1 };
+                case Corner::TopLeft: return{ 1, 1 };
+
+                default:
+                    throw std::runtime_error("Unknow start corner passed: " + std::to_string(static_cast<int>(startCorner)));
+            }
+        }
+
+        Offset Image::getFindStartPos(Corner startCorner, const Size& findImgSize) const
+        {
+            switch (startCorner)
+            {
+                case Corner::BottomRight: return{ w - findImgSize.w, h - findImgSize.h };
+                case Corner::BottomLeft: return{ 0, h - findImgSize.h };
+                case Corner::TopRight: return{ w - findImgSize.w, 0 };
+                case Corner::TopLeft: return{ 0, 0 };
+
+                default:
+                    throw std::runtime_error("Unknow start corner passed: " + std::to_string(static_cast<int>(startCorner)));
+            }
+        }
+
+        bool Image::isImageThere(const Pos& pos, const Image& img) const
+        {
+            for (size_t y = 0; y < img.h; ++y)
+            {
+                for (size_t x = 0; x < img.w; ++x)
+                {
+                    const auto imgPos = Offset{ x, y };
+                    const auto currentPos = pos + Offset{ x, y };
+
+                    if (cpixel(currentPos) != img.cpixel(imgPos))
+                        return false;
+                }
+            }
+
+            return true;
+        }
+
+        bool Image::isInside(const Pos& pos) const
+        {
+            return 0 <= pos.x && pos.x < w &&
+                   0 <= pos.y && pos.y < h;
         }
     }
 }

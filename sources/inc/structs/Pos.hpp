@@ -28,6 +28,12 @@ namespace cdl
                 return PosImpl{ x + rhs.x, y + rhs.y };
             }
 
+            template <typename Rhs>
+            PosImpl operator+(const Rhs &rhs) const
+            {
+                return (*this + from(rhs));
+            }
+
             PosImpl& operator+=(const PosImpl &rhs)
             {
                 x += rhs.x;
