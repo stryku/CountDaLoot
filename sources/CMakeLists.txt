@@ -1,5 +1,7 @@
 set (inc
         ${inc_dir}/capture/ScreenCapturer.hpp
+		
+        ${inc_dir}/consts/consts.hpp
 
         ${inc_dir}/graphics/Image.hpp
 		
@@ -23,6 +25,8 @@ set (inc
 					
 set (src 
         ${src_dir}/capture/ScreenCapturer.cpp
+		
+        ${src_dir}/consts/consts.cpp
 
         ${src_dir}/graphics/Image.cpp
 
