@@ -1,6 +1,6 @@
 #pragma once
 
-#include <string>
+#include "font/db/CharacterDb.hpp"
 
 namespace cdl
 {
@@ -9,7 +9,10 @@ namespace cdl
         class LootFont
         {
         public:
-            static LootFont load(const std::string& path);
+            explicit LootFont(const db::CharactersDb& db);
+
+        private:
+            const db::CharactersDb chars;
         };
     }
 }

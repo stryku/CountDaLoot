@@ -4,9 +4,8 @@ namespace cdl
 {
     namespace font
     {
-        static LootFont LootFont::load(const std::string& path)
-        {
-
-        }
+        LootFont::LootFont(const db::CharactersDb& db)
+            : chars{ db }
+        {}
     }
 }
