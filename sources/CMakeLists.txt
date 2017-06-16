@@ -5,6 +5,9 @@ set (inc
 		
         ${inc_dir}/font/LootFont.hpp
 		
+        ${inc_dir}/font/db/Character.hpp
+        ${inc_dir}/font/db/CharacterDb.hpp
+		
         ${inc_dir}/loot/ILootObserver.hpp
         ${inc_dir}/loot/LootData.hpp
         ${inc_dir}/loot/TabLootReader.hpp
@@ -24,6 +27,9 @@ set (src
         ${src_dir}/graphics/Image.cpp
 
         ${src_dir}/font/LootFont.cpp
+		
+        ${src_dir}/font/db/Character.cpp
+        ${src_dir}/font/db/CharacterDb.cpp
 		
         ${src_dir}/loot/TabLootReader.cpp
             
