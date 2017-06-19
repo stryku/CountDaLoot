@@ -5,8 +5,6 @@ set (inc
 
         ${inc_dir}/graphics/Image.hpp
 		
-        ${inc_dir}/font/LootFont.hpp
-		
         ${inc_dir}/font/db/Character.hpp
         ${inc_dir}/font/db/CharacterDb.hpp
 		
@@ -20,6 +18,8 @@ set (inc
         ${inc_dir}/structs/Rgba.hpp
         ${inc_dir}/structs/Size.hpp
 		
+		${inc_dir}/text/TextReader.hpp
+		
                     
             PARENT_SCOPE)
 					
@@ -29,12 +29,12 @@ set (src
         ${src_dir}/consts/consts.cpp
 
         ${src_dir}/graphics/Image.cpp
-
-        ${src_dir}/font/LootFont.cpp
 		
         ${src_dir}/font/db/Character.cpp
         ${src_dir}/font/db/CharacterDb.cpp
 		
         ${src_dir}/loot/TabLootReader.cpp
+		
+		${src_dir}/text/TextReader.cpp
             
             PARENT_SCOPE)

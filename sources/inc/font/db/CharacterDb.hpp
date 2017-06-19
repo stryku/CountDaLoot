@@ -18,10 +18,9 @@ namespace cdl
             {
             public:
                 CharactersDb(const std::vector<Character>& chars)
-                {
-                    for (const auto c : chars)
-                        mapByCharacter[c.character] = c;
-                }
+                    : mapByCharacter{ fromVector(chars) }
+                    , charsVector{ chars }
+                {}
 
                 bool exist(char character) const
                 {
@@ -45,10 +44,29 @@ namespace cdl
                         chars.push_back(character);
                     }
 
+                    std::sort(std::begin(chars), std::end(chars));
+
                     return CharactersDb(chars);
                 }
+                
+                const std::vector<Character>& chars() const
+                {
+                    return charsVector;
+                }
+
             private:
-                std::map<char, Character> mapByCharacter;
+                static std::map<char, Character> fromVector(const std::vector<Character>& charsVector)
+                {
+                    std::map<char, Character> map;
+
+                    for (const auto c : charsVector)
+                        map[c.character] = c;
+
+                    return map;
+                }
+
+                const std::map<char, Character> mapByCharacter;
+                const std::vector<Character> charsVector;
             };
         }
     }

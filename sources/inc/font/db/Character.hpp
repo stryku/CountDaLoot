@@ -19,6 +19,8 @@ namespace cdl
 
                 static std::vector<bool> simpleStringToLayout(const std::string& str);
                 static Character fromPtree(const boost::property_tree::ptree &tree);
+
+                bool operator<(const Character& rhs) const { return width < rhs.width; }
             };
         }
     }

@@ -150,7 +150,7 @@ namespace cdl
                 for (int j = 0; j < width * 3; j += 3)
                 {
                     const Rgba pixel{ data[j + 2], data[j + 1], data[j], 255 };
-                    ret.pixel(j/3, height - i - 1) = pixel;
+                    ret.pixel(j/3, i) = pixel;
                 }
             }
 
