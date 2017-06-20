@@ -3,21 +3,23 @@
 #include <QDebug>
 
 #include "graphics/Image.hpp"
-#include "text/TextReader.hpp"
+#include "capture/ScreenCapturer.hpp"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     MainWindow w;
 
-    auto image = cdl::graphics::Image::load("C:/moje/tmp/git/tlc/repo/tests/data/loot_test.bmp");
+    auto pattern = cdl::graphics::Image::load("C:/moje/tmp/git/tlc/repo/tests/data/img/find/pattern_loot_active.bmp");
+    pattern.toCb();
 
-    cdl::text::TextReader reader{ cdl::font::db::CharactersDb::load("C:/moje/tmp/git/tlc/repo/data/font_11.xml") };
+    auto find_in = cdl::graphics::Image::load("C:/moje/tmp/git/tlc/repo/tests/data/img/find/tibia_screen.bmp");
+    find_in.toCb();
 
-    const auto text = reader.read(image);
+    auto pos = find_in.find(pattern);
 
-    if (text)
-        qDebug() << text->c_str();
+    if (pos)
+        qDebug() << pos->x << " " << pos->y;
 
     w.show();
 

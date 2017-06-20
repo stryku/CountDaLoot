@@ -127,7 +127,7 @@ namespace cdl
             Image ret;
 
             int i;
-            std::ifstream file{ path };
+            std::ifstream file{ path,  std::ifstream::binary };
 
             char info[54];
             file.read(info, 54);
@@ -147,10 +147,12 @@ namespace cdl
             for (int i = 0; i < height; i++)
             {
                 file.read(data, row_padded);
+                int read = file.gcount();
                 for (int j = 0; j < width * 3; j += 3)
                 {
-                    const Rgba pixel{ data[j + 2], data[j + 1], data[j], 255 };
-                    ret.pixel(j/3, i) = pixel;
+
+                    const Rgba pixel{ data[j], data[j + 1], data[j + 2], 255 };
+                    ret.pixel(j/3,height - 1 - i) = pixel;
                 }
             }
 
@@ -168,8 +170,8 @@ namespace cdl
 
             auto pos = Pos::from(getFindStartPos(startCorner, { img.w, img.h }));
             
-            for (; isInside(pos); ++pos.y)
-                for (; isInside(pos); ++pos.x)
+            for (; isInside(pos) && pos.y + img.h <= h; ++pos.y)
+                for (pos.x = 0; isInside(pos) && pos.x + img.w <= w; ++pos.x)
                     if (isImageThere(pos, img))
                         return pos;
 
@@ -206,14 +208,16 @@ namespace cdl
 
         bool Image::isImageThere(const Pos& pos, const Image& img) const
         {
+            const auto currentPos = pos;
             for (size_t y = 0; y < img.h; ++y)
             {
                 for (size_t x = 0; x < img.w; ++x)
                 {
                     const auto imgPos = Offset{ x, y };
-                    const auto currentPos = pos + Offset{ x, y };
+                    const auto pxCurr = cpixel(currentPos + imgPos);
+                    const auto imgPixel = img.cpixel(imgPos);
 
-                    if (cpixel(currentPos) != img.cpixel(imgPos))
+                    if (cpixel(currentPos + imgPos) != img.cpixel(imgPos))
                         return false;
                 }
             }
