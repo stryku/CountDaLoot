@@ -7,5 +7,12 @@ namespace cdl
     namespace consts
     {
         extern const std::string kFontDatabasePath;
+
+        namespace img
+        {
+            extern const std::string kLootActivePath;
+            extern const std::string kLootInactivePath;
+            extern const std::string kLootInactiveRedPath;
+        }
     }
 }

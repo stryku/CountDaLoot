@@ -2,6 +2,8 @@ set (inc
         ${inc_dir}/capture/ScreenCapturer.hpp
 		
         ${inc_dir}/consts/consts.hpp
+		
+        ${inc_dir}/data/img/ImageDataProvider.hpp
 
         ${inc_dir}/graphics/Image.hpp
 		
@@ -10,7 +12,6 @@ set (inc
 		
         ${inc_dir}/loot/ILootObserver.hpp
         ${inc_dir}/loot/LootData.hpp
-		
 		
         ${inc_dir}/loot/tab/TabLootReader.hpp
         ${inc_dir}/loot/tab/LootTabCoordinates.hpp
@@ -31,6 +32,8 @@ set (src
         ${src_dir}/capture/ScreenCapturer.cpp
 		
         ${src_dir}/consts/consts.cpp
+		
+        ${src_dir}/data/img/ImageDataProvider.cpp
 
         ${src_dir}/graphics/Image.cpp
 		
