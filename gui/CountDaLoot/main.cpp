@@ -13,7 +13,9 @@ int main(int argc, char *argv[])
     auto pattern = cdl::graphics::Image::load("C:/moje/tmp/git/tlc/repo/tests/data/img/find/pattern_loot_active.bmp");
     pattern.toCb();
 
-    auto find_in = cdl::graphics::Image::load("C:/moje/tmp/git/tlc/repo/tests/data/img/find/tibia_screen.bmp");
+    cdl::capture::ScreenCapturer capturer;
+    
+    auto find_in = capturer.capture();
     find_in.toCb();
 
     auto pos = find_in.find(pattern);

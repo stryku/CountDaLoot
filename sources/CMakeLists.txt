@@ -10,8 +10,12 @@ set (inc
 		
         ${inc_dir}/loot/ILootObserver.hpp
         ${inc_dir}/loot/LootData.hpp
-        ${inc_dir}/loot/TabLootReader.hpp
-        ${inc_dir}/loot/LootTabProvider.hpp
+		
+		
+        ${inc_dir}/loot/tab/TabLootReader.hpp
+        ${inc_dir}/loot/tab/LootTabCoordinates.hpp
+        ${inc_dir}/loot/tab/LootTabProvider.hpp
+        ${inc_dir}/loot/tab/LootTabFinder.hpp
 
         ${inc_dir}/structs/Pos.hpp
         ${inc_dir}/structs/Rect.hpp
@@ -33,7 +37,8 @@ set (src
         ${src_dir}/font/db/Character.cpp
         ${src_dir}/font/db/CharacterDb.cpp
 		
-        ${src_dir}/loot/TabLootReader.cpp
+        ${src_dir}/loot/tab/LootTabFinder.cpp
+        ${src_dir}/loot/tab/TabLootReader.cpp
 		
 		${src_dir}/text/TextReader.cpp
             
