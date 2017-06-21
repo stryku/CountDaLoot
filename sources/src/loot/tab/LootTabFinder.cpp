@@ -17,6 +17,8 @@ namespace cdl
                 : mLootActivePattern(data::img::ImageDataProvider{}.getLootTabActive())
                 , mLootInactivePattern(data::img::ImageDataProvider{}.getLootTabInactive())
                 , mLootInactiveRedPattern(data::img::ImageDataProvider{}.getLootTabInactiveRed())
+                , mInputFieldPattern(data::img::ImageDataProvider{}.getInputFieldPattern())
+                , mUparrowPattern(data::img::ImageDataProvider{}.getUpArrowPattern())
             {}
 
             boost::optional<LootTabCoordinates> LootTabFinder::findCoordinates(const graphics::Image& screen) const

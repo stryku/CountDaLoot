@@ -17,6 +17,8 @@ namespace cdl
                 graphics::Image getLootTabActive() const;
                 graphics::Image getLootTabInactive() const;
                 graphics::Image getLootTabInactiveRed() const;
+                graphics::Image getInputFieldPattern() const;
+                graphics::Image getUpArrowPattern() const;
             };
         }
     }
