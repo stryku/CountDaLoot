@@ -1,4 +1,4 @@
-#include "loot/TabLootReader.hpp"
+#include "loot/tab/TabLootReader.hpp"
 
 namespace cdl
 {

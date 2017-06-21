@@ -230,5 +230,28 @@ namespace cdl
             return 0 <= pos.x && pos.x < w &&
                    0 <= pos.y && pos.y < h;
         }
+
+        boost::optional<Offset> Image::findOneOf(const std::vector<Image>& images) const
+        {
+            Pos pos{ 0, 0 };
+
+            for (; isInside(pos) && pos.y; ++pos.y)
+            {
+                for (pos.x = 0; isInside(pos); ++pos.x)
+                {
+                    for (const auto& img : images)
+                    {
+                        if (isInside(pos + Pos{ static_cast<int>(img.w), 
+                                                static_cast<int>(img.h) }) &&
+                            isImageThere(pos, img))
+                        {
+                            return Offset::from(pos);
+                        }
+                    }
+                }
+            }
+
+            return{};
+        }
     }
 }

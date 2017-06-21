@@ -59,10 +59,13 @@ namespace cdl
             boost::optional<Pos> find(const graphics::Image& img,
                                       Corner startCorner = Corner::TopLeft) const;
 
+            boost::optional<Offset> findOneOf(const std::vector<Image>& images) const;
+
+            bool isImageThere(const Pos& pos, const Image& img) const;
+
         private:
             std::pair<int, int> getFindDeltas(Corner startCorner) const;
             Offset getFindStartPos(Corner startCorner, const Size& findImgSize) const;
-            bool isImageThere(const Pos& pos, const Image& img) const;
             bool isInside(const Pos& pos) const;
         };
     }
