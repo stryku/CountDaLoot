@@ -1,13 +1,19 @@
 #pragma once
 
+#include "structs/Pos.hpp"
+#include "structs/Rect.hpp"
+
 namespace cdl
 {
     namespace loot
     {
-        class LootTabFinder
+        namespace tab
         {
-        public:
-
-        };
+            struct LootTabCoordinates
+            {
+                Offset tabHeaderPos;
+                Rect tabArea;
+            };
+        }
     }
 }
