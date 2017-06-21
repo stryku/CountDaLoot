@@ -235,9 +235,9 @@ namespace cdl
         {
             Pos pos{ 0, 0 };
 
-            for (; isInside(pos) && pos.y; ++pos.y)
+            for (; isInside(pos); ++pos.y)
             {
-                for (pos.x = 0; isInside(pos); ++pos.x)
+                for (; isInside(pos); ++pos.x)
                 {
                     for (const auto& img : images)
                     {
@@ -249,6 +249,7 @@ namespace cdl
                         }
                     }
                 }
+                pos.x = 0;
             }
 
             return{};

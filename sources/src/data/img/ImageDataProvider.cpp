@@ -26,12 +26,12 @@ namespace cdl
             }
             graphics::Image ImageDataProvider::getInputFieldPattern() const
             {
-                return graphics::Image::load(consts::img::kLootInactiveRedPath);
+                return graphics::Image::load(consts::img::kInputFieldPatternPath);
             }
 
             graphics::Image ImageDataProvider::getUpArrowPattern() const
             {
-                return graphics::Image::load(consts::img::kLootInactiveRedPath);
+                return graphics::Image::load(consts::img::kUpArrowPatternPathPath);
             }
         }
     }

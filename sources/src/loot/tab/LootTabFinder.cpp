@@ -106,9 +106,9 @@ namespace cdl
             boost::optional<Offset> LootTabFinder::findUpArrowPos(const graphics::Image& screen, const Rect& inputFieldRect) const
             {
                 const auto kMinY{ 100 };
-                const auto kOffsetFromEndOfInputFieldX{ 53 };
+                const auto kOffsetFromEndOfInputFieldX{ 52 };
 
-                auto pos = Pos{ inputFieldRect.x + kOffsetFromEndOfInputFieldX, 
+                auto pos = Pos{ inputFieldRect.x + static_cast<int>(inputFieldRect.w) +  kOffsetFromEndOfInputFieldX, 
                                 inputFieldRect.y - static_cast<int>(mUparrowPattern.h) };
 
                 for (; pos.y > kMinY; --pos.y)
