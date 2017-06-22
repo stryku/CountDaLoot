@@ -12,18 +12,23 @@ namespace cdl
             : characters{ characters }
         {}
 
-        boost::optional<std::string> TextReader::read(const graphics::Image& img) const
+        boost::optional<std::string> TextReader::read(const graphics::Image& img, const Offset& startOffset) const
         {
             std::string ret;
-            size_t offset{ 0 };
+            Offset offset = startOffset;
             auto character = readChar(img, offset);
+            char lastChar{ '\0' };
 
             while (character )
             {
-                ret += character->character;
-                offset += character->width;
+                if (character->character == ' ' && lastChar == ' ')
+                    break;
 
-                if (offset >= img.w)
+                lastChar = character->character;
+                ret += character->character;
+                offset.x += character->width;
+
+                if (offset.x >= img.w)
                     break;
 
                 character = readChar(img, offset);
@@ -32,17 +37,16 @@ namespace cdl
             return ret.empty() ? boost::optional<std::string>{} : ret;
         }
 
-        boost::optional<font::db::Character> TextReader::readChar(const graphics::Image& img, size_t xOffset) const
+        boost::optional<font::db::Character> TextReader::readChar(const graphics::Image& img, const Offset& offset) const
         {
             for (const auto& dbChar : characters.chars())
             {
-                const auto rect = Rect{ static_cast<int>(xOffset), 
-                                        0, 
+                const auto rect = Rect{ static_cast<int>(offset.x),
+                                        static_cast<int>(offset.y),
                                         dbChar.width, 
                                         dbChar.height };
 
                 const auto sprite = img.getSprite(rect);
-                sprite.toCb();
                 const auto layout = calculateLayout(sprite);
                 
                 if (layout == dbChar.layout)
@@ -60,8 +64,9 @@ namespace cdl
 
             layout.reserve(img.w * img.h);
 
-            for (const auto& pixel : img.pixels)
-                layout.push_back(pixel == kColor);
+            for(size_t y = 0; y < img.h; ++y)
+                for(size_t x = 0; x < img.w; ++x)
+                    layout.push_back(img.cpixel(x, y) == kColor);
 
             return layout;
         }

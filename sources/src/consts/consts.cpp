@@ -4,7 +4,7 @@ namespace cdl
 {
     namespace consts
     {
-        const std::string kFontDatabasePath{ "data/font.xml" };
+        const std::string kFontDatabasePath{ "data/font_11.xml" };
 
         namespace img
         {

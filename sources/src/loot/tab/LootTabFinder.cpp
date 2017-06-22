@@ -1,6 +1,6 @@
 #include "loot/tab/LootTabFinder.hpp"
 
-#include "data/img/ImageDataProvider.hpp"
+#include "data/DataProvider.hpp"
 #include "graphics/Image.hpp"
 #include "loot/tab/LootTabCoordinates.hpp"
 #include "structs/Pos.hpp"
@@ -14,11 +14,11 @@ namespace cdl
         namespace tab
         {
             LootTabFinder::LootTabFinder()
-                : mLootActivePattern(data::img::ImageDataProvider{}.getLootTabActive())
-                , mLootInactivePattern(data::img::ImageDataProvider{}.getLootTabInactive())
-                , mLootInactiveRedPattern(data::img::ImageDataProvider{}.getLootTabInactiveRed())
-                , mInputFieldPattern(data::img::ImageDataProvider{}.getInputFieldPattern())
-                , mUparrowPattern(data::img::ImageDataProvider{}.getUpArrowPattern())
+                : mLootActivePattern(data::DataProvider{}.getLootTabActive())
+                , mLootInactivePattern(data::DataProvider{}.getLootTabInactive())
+                , mLootInactiveRedPattern(data::DataProvider{}.getLootTabInactiveRed())
+                , mInputFieldPattern(data::DataProvider{}.getInputFieldPattern())
+                , mUparrowPattern(data::DataProvider{}.getUpArrowPattern())
             {}
 
             boost::optional<LootTabCoordinates> LootTabFinder::findCoordinates(const graphics::Image& screen) const
@@ -120,15 +120,15 @@ namespace cdl
 
             Rect LootTabFinder::findAreaRect(const Rect& inputFieldRect, const Offset& upArrowPos) const
             {
-                const auto kOffsetFromBeginOfInputFieldX{ -17 };
-                const auto kOffsetFromEndOfInputFieldY{ static_cast<size_t>(8) };
+                const auto kOffsetFromBeginOfInputFieldX{ -15 };
+                const auto kOffsetFromEndOfInputFieldY{ static_cast<size_t>(6) };
 
                 const auto x{ inputFieldRect.x + kOffsetFromBeginOfInputFieldX };
 
                 return Rect{ x,
                              static_cast<int>(upArrowPos.y),
                              upArrowPos.x - static_cast<size_t>(x),
-                             inputFieldRect.y - kOffsetFromEndOfInputFieldY };
+                             inputFieldRect.y - kOffsetFromEndOfInputFieldY - static_cast<int>(upArrowPos.y) };
             }
         }
     }
