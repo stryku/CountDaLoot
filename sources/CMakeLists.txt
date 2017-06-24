@@ -12,6 +12,7 @@ set (inc
         
         ${inc_dir}/loot/ILootObserver.hpp
         ${inc_dir}/loot/NewLootProvider.hpp
+        ${inc_dir}/loot/LootFilter.hpp
         ${inc_dir}/loot/LootData.hpp
         
         ${inc_dir}/loot/tab/TabLootReader.hpp
@@ -42,6 +43,7 @@ set (src
         ${src_dir}/font/db/CharacterDb.cpp
 
         ${src_dir}/loot/NewLootProvider.cpp
+        ${src_dir}/loot/LootFilter.cpp
         
         ${src_dir}/loot/tab/LootTabFinder.cpp
         ${src_dir}/loot/tab/LootTabProvider.cpp
