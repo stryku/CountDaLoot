@@ -26,6 +26,8 @@ set (inc
         ${inc_dir}/structs/Size.hpp
         
         ${inc_dir}/text/TextReader.hpp
+
+        ${inc_dir}/thread/ThreadWorker.hpp
         
                     
             PARENT_SCOPE)
@@ -50,5 +52,7 @@ set (src
         ${src_dir}/loot/tab/TabLootReader.cpp
         
         ${src_dir}/text/TextReader.cpp
+
+        ${src_dir}/thread/ThreadWorker.cpp
             
             PARENT_SCOPE)
