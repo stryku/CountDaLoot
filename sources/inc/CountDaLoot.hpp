@@ -2,6 +2,7 @@
 
 #include "view/LootListUpdater.hpp"
 #include "loot/NewLootProvider.hpp"
+#include "ui/controls/Table.hpp"
 
 #include "mainwindow.h"
 #include <QApplication>
@@ -17,9 +18,12 @@ namespace cdl
         int execute();
 
     private:
+        std::function<void(const std::string&)> getAddInterestingItemCallback();
+
         QApplication mApplication;
         MainWindow mWindow;
         view::LootListUpdater mLootListUpdater;
         loot::NewLootProvider mNewLootProvider;
+        ui::controls::Table<1> mInterestingItemsTable;
     };
 }

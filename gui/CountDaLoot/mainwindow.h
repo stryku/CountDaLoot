@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 
+#include <functional>
+
 namespace Ui {
 class MainWindow;
 }
@@ -16,6 +18,7 @@ public:
     ~MainWindow();
 
     Ui::MainWindow& getUi();
+    void setAddInterestingItemCallback(std::function<void(const std::string&)> cb);
 
 private slots:
     void on_actionOpen_triggered();
@@ -32,8 +35,11 @@ private slots:
 
     void on_comboBox_currentIndexChanged(int index);
 
+    void on_ItemsSettingsPushButtonAdd_clicked();
+
 private:
     Ui::MainWindow *ui;
+    std::function<void(const std::string&)> mAddInterestingItemCallback;
 };
 
 #endif // MAINWINDOW_H

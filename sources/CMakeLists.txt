@@ -31,6 +31,8 @@ set (inc
 
         ${inc_dir}/thread/ThreadWorker.hpp
 
+        ${inc_dir}/ui/controls/Table.hpp
+
         ${inc_dir}/view/LootListUpdater.hpp
                     
             PARENT_SCOPE)

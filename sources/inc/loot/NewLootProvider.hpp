@@ -14,6 +14,7 @@ namespace cdl
         class NewLootProvider
         {
         public:
+            ~NewLootProvider();
             void registerObserver(ILootObserver& observer);
             void start();
             void stop();

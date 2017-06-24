@@ -10,6 +10,11 @@ namespace cdl
 {
     namespace loot
     {
+        NewLootProvider::~NewLootProvider()
+        {
+            stop();
+        }
+
         void NewLootProvider::registerObserver(ILootObserver& observer)
         {
             mObservers.push_back(&observer);

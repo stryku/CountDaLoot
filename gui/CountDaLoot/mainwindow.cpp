@@ -46,10 +46,23 @@ void MainWindow::on_actionAlways_on_top_triggered()
 
 void MainWindow::on_actionAlways_on_top_toggled(bool arg1)
 {
-
+    const auto flags = windowFlags() | Qt::WindowStaysOnTopHint;
+    setWindowFlags(flags);
+    show();
 }
 
 void MainWindow::on_comboBox_currentIndexChanged(int index)
 {
 
+}
+
+void MainWindow::on_ItemsSettingsPushButtonAdd_clicked()
+{
+    if (mAddInterestingItemCallback)
+        mAddInterestingItemCallback(ui->ItemsSettingsLineEditItemName->text().toStdString());
+}
+
+void MainWindow::setAddInterestingItemCallback(std::function<void(const std::string&)> cb)
+{
+    mAddInterestingItemCallback = cb;
 }
