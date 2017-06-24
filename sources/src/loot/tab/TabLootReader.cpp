@@ -7,31 +7,36 @@ namespace cdl
 {
     namespace loot
     {
-        TabLootReader::TabLootReader()
-            : mTextReader{ data::DataProvider{}.getCharacterDb() }
-        {}
-
-        std::vector<std::string> TabLootReader::read(const graphics::Image& tab) const
+        namespace tab
         {
-            const auto kHourWidth{ 42u };
-            const auto kFontHeight{ 13u };
+            TabLootReader::TabLootReader()
+                : mTextReader{ data::DataProvider{}.getCharacterDb() }
+            {}
 
-            const auto linesCount = tab.h / kFontHeight;
-
-            Offset offset{ kHourWidth, tab.h - kFontHeight };
-            std::vector<std::string> lines;
-
-            for(size_t i = 0; i < linesCount; ++i, offset.y -= kFontHeight)
+            std::vector<std::string> TabLootReader::read(const graphics::Image& tab) const
             {
-                const auto line = mTextReader.read(tab, offset);
+                const auto kHourWidth{ 42u };
+                const auto kFontHeight{ 13u };
 
-                if (!line)
-                    return lines;
+                const auto linesCount = tab.h / kFontHeight;
 
-                lines.emplace_back(*line);
+                Offset offset{ kHourWidth, tab.h - kFontHeight };
+                std::vector<std::string> lines;
+
+                for (size_t i = 0; i < linesCount; ++i, offset.y -= kFontHeight)
+                {
+                    const auto line = mTextReader.read(tab, offset);
+
+                    if (!line || *line == " ")
+                        break;
+
+                    lines.emplace_back(*line);
+                }
+
+                std::reverse(std::begin(lines), std::end(lines));
+
+                return lines;
             }
-
-            return lines;
         }
     }
 }

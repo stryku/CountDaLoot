@@ -53,6 +53,6 @@ set (src
         
         ${src_dir}/text/TextReader.cpp
 
-        ${src_dir}/thread/ThreadWorker.cpp
+        ${src_dir}/thread/ThreadWorker.cpp 
             
             PARENT_SCOPE)

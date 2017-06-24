@@ -8,25 +8,16 @@
 #include "loot/tab/LootTabCoordinates.hpp"
 #include "loot/tab/LootTabProvider.hpp"
 #include "loot/tab/TabLootReader.hpp"
+#include "loot/NewLootProvider.hpp"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     MainWindow w;
 
-    auto tab = cdl::loot::LootTabProvider{}.getTab();
-    while (!tab)
-    {
-        tab = cdl::loot::LootTabProvider{}.getTab();
-    }
+    cdl::loot::NewLootProvider provider;
 
-
-    tab->toCb();
-
-    auto lines = cdl::loot::TabLootReader{}.read(*tab);
-
-    for (auto line : lines)
-        qDebug() << line.c_str();
+    provider.start();
 
     w.show();
 

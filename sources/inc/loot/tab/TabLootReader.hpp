@@ -14,15 +14,18 @@ namespace cdl
 
     namespace loot
     {
-        class TabLootReader
+        namespace tab
         {
-        public:
-            explicit TabLootReader();
+            class TabLootReader
+            {
+            public:
+                explicit TabLootReader();
 
-            std::vector<std::string> read(const graphics::Image& tab) const;
+                std::vector<std::string> read(const graphics::Image& tab) const;
 
-        private:
-            text::TextReader mTextReader;
-        };
+            private:
+                text::TextReader mTextReader;
+            };
+        }
     }
 }

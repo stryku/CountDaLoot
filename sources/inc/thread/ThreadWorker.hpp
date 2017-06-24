@@ -1,21 +1,19 @@
 #pragma once
 
-#include "utils.hpp"
-
 #include <thread>
 #include <chrono>
 
-namespace Amb
+namespace cdl
 {
-    namespace Utils
+    namespace thread
     {
         class ThreadWorker
         {
         public:
             ~ThreadWorker();
 
-            template <typename LoopFunction>
-            void start(LoopFunction loopFunction, Utils::RandomBetween sleepDuration)
+            template <typename LoopFunction, typename Duration>
+            void start(LoopFunction loopFunction, const Duration& sleepDuration)
             {
                 stop();
 
@@ -24,29 +22,7 @@ namespace Amb
                     while (needRunning)
                     {
                         const auto sleepTo = std::chrono::system_clock::now() +
-                                             std::chrono::milliseconds(sleepDuration.get());
-
-                        loopFunction();
-
-                        std::this_thread::sleep_until(sleepTo);
-                    }
-                };
-
-                needRunning = true;
-
-                thread = std::thread{ loop };
-            }
-
-            template <typename LoopFunction, typename Rep, typename Period>
-            void start(LoopFunction loopFunction, const std::chrono::duration<Rep, Period> &duration)
-            {
-                stop();
-
-                auto loop = [this, loopFunction, duration]()
-                {
-                    while (needRunning)
-                    {
-                        const auto sleepTo = std::chrono::system_clock::now() + duration;
+                                             sleepDuration;
 
                         loopFunction();
 

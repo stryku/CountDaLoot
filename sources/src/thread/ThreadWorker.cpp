@@ -1,8 +1,8 @@
-#include "utils/ThreadWorker.hpp"
+#include "thread/ThreadWorker.hpp"
 
-namespace Amb
+namespace cdl
 {
-    namespace Utils
+    namespace thread
     {
         ThreadWorker::~ThreadWorker()
         {
