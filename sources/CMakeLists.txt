@@ -1,4 +1,6 @@
 set (inc
+        ${inc_dir}/CountDaLoot.hpp
+
         ${inc_dir}/capture/ScreenCapturer.hpp
         
         ${inc_dir}/consts/consts.hpp
@@ -33,6 +35,8 @@ set (inc
             PARENT_SCOPE)
                     
 set (src 
+        ${src_dir}/CountDaLoot.cpp
+
         ${src_dir}/capture/ScreenCapturer.cpp
         
         ${src_dir}/consts/consts.cpp
