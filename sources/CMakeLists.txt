@@ -34,6 +34,7 @@ set (inc
         ${inc_dir}/ui/controls/Table.hpp
 
         ${inc_dir}/view/LootListUpdater.hpp
+        ${inc_dir}/view/LootListViewType.hpp
                     
             PARENT_SCOPE)
                     

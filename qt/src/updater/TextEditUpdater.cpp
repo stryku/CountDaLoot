@@ -14,6 +14,12 @@ namespace cdl
                              this,
                              &TextEditUpdater::appendSlot,
                              Qt::ConnectionType::QueuedConnection);
+
+            QObject::connect(this,
+                             &TextEditUpdater::clearSignal,
+                             this,
+                             &TextEditUpdater::clearSlot,
+                             Qt::ConnectionType::QueuedConnection);
         }
 
         void TextEditUpdater::append(const QString& line)
@@ -21,9 +27,24 @@ namespace cdl
             emit(appendSignal(line));
         }
 
+        void TextEditUpdater::clear()
+        {
+            emit(clear());
+        }
+
         void TextEditUpdater::appendSlot(const QString& line)
         {
             mTextEdit.append(line);
+        }
+
+        void TextEditUpdater::clearSlot()
+        {
+            clearDirectly();
+        }
+
+        void TextEditUpdater::clearDirectly()
+        {
+            mTextEdit.clear();
         }
     }
 }

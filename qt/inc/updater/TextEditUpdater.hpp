@@ -18,12 +18,16 @@ namespace cdl
 
         public:
             void append(const QString& line);
+            void clear();
+            void clearDirectly();
 
         private slots:
             void appendSlot(const QString& line);
+            void clearSlot();
 
         signals:
             void appendSignal(const QString& line);
+            void clearSignal();
 
         private:
             QTextEdit& mTextEdit;

@@ -14,6 +14,7 @@ namespace cdl
 
         mWindow.setWindowTitle(QString("Count Da Loot %1").arg(CDL_VERSION));
         mWindow.setAddInterestingItemCallback(getAddInterestingItemCallback());
+        mWindow.setLootListViewTypeChangedCallback(getLootListViewTypeChangedCallback());
     }
 
     int CountDaLoot::execute()
@@ -30,4 +31,13 @@ namespace cdl
             mLootListUpdater.setInterestingItems(mInterestingItemsTable.getAll<std::string>());
         };
     }
+
+    std::function<void(view::LootListViewType)> CountDaLoot::getLootListViewTypeChangedCallback()
+    {
+        return [this](view::LootListViewType type)
+        {
+            mLootListUpdater.setViewType(type);
+        };
+    }
+
 }

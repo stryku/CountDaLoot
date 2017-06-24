@@ -19,6 +19,7 @@ namespace cdl
 
     private:
         std::function<void(const std::string&)> getAddInterestingItemCallback();
+        std::function<void(view::LootListViewType)> getLootListViewTypeChangedCallback();
 
         QApplication mApplication;
         MainWindow mWindow;

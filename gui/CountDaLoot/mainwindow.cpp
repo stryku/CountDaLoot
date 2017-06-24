@@ -51,10 +51,6 @@ void MainWindow::on_actionAlways_on_top_toggled(bool arg1)
     show();
 }
 
-void MainWindow::on_comboBox_currentIndexChanged(int index)
-{
-
-}
 
 void MainWindow::on_ItemsSettingsPushButtonAdd_clicked()
 {
@@ -62,7 +58,18 @@ void MainWindow::on_ItemsSettingsPushButtonAdd_clicked()
         mAddInterestingItemCallback(ui->ItemsSettingsLineEditItemName->text().toStdString());
 }
 
+void MainWindow::setLootListViewTypeChangedCallback(std::function<void(cdl::view::LootListViewType)> cb)
+{
+    mLootListViewTypeChangedCallback = cb;
+}
+
 void MainWindow::setAddInterestingItemCallback(std::function<void(const std::string&)> cb)
 {
     mAddInterestingItemCallback = cb;
+}
+
+void MainWindow::on_LootComboBoxShow_currentIndexChanged(int index)
+{
+    if (mLootListViewTypeChangedCallback)
+        mLootListViewTypeChangedCallback(static_cast<cdl::view::LootListViewType>(index));
 }
