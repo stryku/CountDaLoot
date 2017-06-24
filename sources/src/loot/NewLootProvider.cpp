@@ -43,9 +43,6 @@ namespace cdl
 
                         mLoot.insert(std::end(mLoot),
                                      std::cbegin(newLines), std::cend(newLines));
-
-                        for (const auto& line : newLines)
-                            std::cout << line << "\n";
                     }
                 }
             };
