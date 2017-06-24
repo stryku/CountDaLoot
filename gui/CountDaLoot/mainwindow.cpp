@@ -13,6 +13,12 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+Ui::MainWindow& MainWindow::getUi()
+{
+    return *ui;
+}
+
+
 void MainWindow::on_actionOpen_triggered()
 {
 

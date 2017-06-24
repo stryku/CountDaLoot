@@ -30,7 +30,8 @@ set (inc
         ${inc_dir}/text/TextReader.hpp
 
         ${inc_dir}/thread/ThreadWorker.hpp
-        
+
+        ${inc_dir}/view/LootListUpdater.hpp
                     
             PARENT_SCOPE)
                     
@@ -58,5 +59,7 @@ set (src
         ${src_dir}/text/TextReader.cpp
 
         ${src_dir}/thread/ThreadWorker.cpp 
+
+        ${src_dir}/view/LootListUpdater.cpp
             
             PARENT_SCOPE)

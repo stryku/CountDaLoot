@@ -1,5 +1,8 @@
 #pragma once
 
+#include "view/LootListUpdater.hpp"
+#include "loot/NewLootProvider.hpp"
+
 #include "mainwindow.h"
 #include <QApplication>
 #include <QDebug>
@@ -16,5 +19,7 @@ namespace cdl
     private:
         QApplication mApplication;
         MainWindow mWindow;
+        view::LootListUpdater mLootListUpdater;
+        loot::NewLootProvider mNewLootProvider;
     };
 }

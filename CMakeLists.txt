@@ -20,7 +20,7 @@ endif()
 
 set( CMAKE_PREFIX_PATH C:/Qt/Qt5.9.0/5.9/msvc2015)
 
-set(CDL_VERSION "v0.1" CACHE STRING "Version tag")
+set(CDL_VERSION "\"v0.1\"" CACHE STRING "Version tag")
 add_definitions(-DCDL_VERSION=${CDL_VERSION})
 
 set (program_name "Count Da Loot")
@@ -42,17 +42,22 @@ message (${install_dir})
 
 include_directories (${inc_dir} 
                      ${inc_dir_qt}
+                     ${src_root}/qt/inc
                      ${Qt5UiTools_INCLUDE_DIRS})
            
+add_subdirectory(qt)
+
 set (src_qt	${src_dir_qt}/main.cpp
             ${src_dir_qt}/mainwindow.cpp)
-					
-set (inc_qt ${inc_dir_qt}/mainwindow.h)
-					
 
-add_subdirectory(sources)                    
+set (inc_qt ${inc_dir_qt}/mainwindow.h)
+
+
+add_subdirectory(sources)
              
-set (hdr ${inc_dir_qt}/mainwindow.h)
+set (hdr ${inc_dir_qt}/mainwindow.h
+         ${qt_utils_inc})
+
 set (ui  ${ui_dir}/mainwindow.ui)
 set (gui_src ${src_dir_qt}/main.cpp)
 
@@ -69,11 +74,15 @@ add_library (MocObjects OBJECT
 
 source_group(TREE ${src_root} FILES ${src_qt}
                                     ${inc_qt}
+                                    ${qt_utils_inc}
+                                    ${qt_utils_src}
                                     ${src}
                                     ${inc})
 
 add_executable(${PROJECT_NAME_STR} ${src_qt}
                                    ${inc_qt}
+                                   ${qt_utils_inc}
+                                   ${qt_utils_src}
                                    ${src}
                                    ${inc} 
                                    $<TARGET_OBJECTS:MocObjects>)
