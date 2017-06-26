@@ -21,6 +21,8 @@ set (inc
         ${inc_dir}/loot/tab/LootTabCoordinates.hpp
         ${inc_dir}/loot/tab/LootTabProvider.hpp
         ${inc_dir}/loot/tab/LootTabFinder.hpp
+        ${inc_dir}/loot/tab/ILootTabStateObserver.hpp
+        ${inc_dir}/loot/tab/LootTabState.hpp
 
         ${inc_dir}/structs/Pos.hpp
         ${inc_dir}/structs/Rect.hpp
