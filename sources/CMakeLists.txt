@@ -37,6 +37,7 @@ set (inc
 
         ${inc_dir}/view/LootListUpdater.hpp
         ${inc_dir}/view/LootListViewType.hpp
+        ${inc_dir}/view/LootTabStateLabelUpdater.hpp
                     
             PARENT_SCOPE)
                     
@@ -66,5 +67,6 @@ set (src
         ${src_dir}/thread/ThreadWorker.cpp 
 
         ${src_dir}/view/LootListUpdater.cpp
+        ${src_dir}/view/LootTabStateLabelUpdater.cpp
             
             PARENT_SCOPE)
