@@ -1,8 +1,10 @@
 #include "loot/NewLootProvider.hpp"
 #include "loot/ILootObserver.hpp"
+#include "loot/tab/ILootTabStateObserver.hpp"
 #include "graphics/Image.hpp"
 #include "loot/LootFilter.hpp"
 #include "loot/tab/TabLootReader.hpp"
+#include "loot/tab/LootTabData.hpp"
 
 #include <iostream>
 
@@ -20,6 +22,11 @@ namespace cdl
             mObservers.push_back(&observer);
         }
 
+        void NewLootProvider::registerTabStateObserver(tab::ILootTabStateObserver& observer)
+        {
+            mTabStateObservers.push_back(&observer);
+        }
+
         void NewLootProvider::start()
         {
             mThreadWorker.start(getCallback(), std::chrono::milliseconds{ kSleep });
@@ -34,11 +41,14 @@ namespace cdl
         {
             return [this]
             {
-                const auto tab = mLootTabProvider.getTab();
+                const auto tabData = mLootTabProvider.getTab();
 
-                if (tab)
+                for (auto observer : mTabStateObservers)
+                    observer->notify(tabData.state);
+
+                if (tabData.tab)
                 {
-                    const auto lootLines = tab::TabLootReader{}.read(*tab);
+                    const auto lootLines = tab::TabLootReader{}.read(*tabData.tab);
                     const auto newLines = LootFilter{}.filter(mLoot, lootLines);
 
                     if (!newLines.empty())

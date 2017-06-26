@@ -1,6 +1,7 @@
 #pragma once
 
 #include "view/LootListUpdater.hpp"
+#include "view/LootTabStateLabelUpdater.hpp"
 #include "loot/NewLootProvider.hpp"
 #include "ui/controls/Table.hpp"
 
@@ -24,6 +25,7 @@ namespace cdl
         QApplication mApplication;
         MainWindow mWindow;
         view::LootListUpdater mLootListUpdater;
+        view::LootTabStateLabelUpdater mLootTabStateLabelUpdater;
         loot::NewLootProvider mNewLootProvider;
         ui::controls::Table<1> mInterestingItemsTable;
     };

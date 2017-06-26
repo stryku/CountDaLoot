@@ -6,9 +6,11 @@ namespace cdl
     CountDaLoot::CountDaLoot(int argc, char* argv[])
         : mApplication{ argc, argv }
         , mLootListUpdater{ *mWindow.getUi().LootTextEdit }
+        , mLootTabStateLabelUpdater{ *mWindow.getUi().labelLootTabStatus }
         , mInterestingItemsTable{ mWindow.getUi().ItemsSettingsTtableViewItems, {"Item"} }
     {
         mNewLootProvider.registerObserver(mLootListUpdater);
+        mNewLootProvider.registerTabStateObserver(mLootTabStateLabelUpdater);
 
         mNewLootProvider.start();
 

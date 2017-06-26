@@ -23,6 +23,7 @@ set (inc
         ${inc_dir}/loot/tab/LootTabFinder.hpp
         ${inc_dir}/loot/tab/ILootTabStateObserver.hpp
         ${inc_dir}/loot/tab/LootTabState.hpp
+        ${inc_dir}/loot/tab/LootTabData.hpp
 
         ${inc_dir}/structs/Pos.hpp
         ${inc_dir}/structs/Rect.hpp

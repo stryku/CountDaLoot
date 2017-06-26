@@ -11,11 +11,17 @@ namespace cdl
     {
         class ILootObserver;
 
+        namespace tab
+        {
+            class ILootTabStateObserver;
+        }
+
         class NewLootProvider
         {
         public:
             ~NewLootProvider();
             void registerObserver(ILootObserver& observer);
+            void registerTabStateObserver(tab::ILootTabStateObserver& observer);
             void start();
             void stop();
 
@@ -25,6 +31,7 @@ namespace cdl
             std::function<void()> getCallback();
 
             std::vector<ILootObserver*> mObservers;
+            std::vector<tab::ILootTabStateObserver*> mTabStateObservers;
             thread::ThreadWorker mThreadWorker;
             tab::LootTabProvider mLootTabProvider;
             std::vector<std::string> mLoot;

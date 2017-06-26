@@ -2,6 +2,7 @@
 
 #include "capture/ScreenCapturer.hpp"
 #include "data/DataProvider.hpp"
+#include "loot/tab/LootTabData.hpp"
 
 namespace cdl
 {
@@ -16,13 +17,30 @@ namespace cdl
                 , mLastCoordinates{ Offset{0,0}, Rect{} }
             {}
 
+            LootTabState LootTabProvider::getTabState(const graphics::Image& screen) const
+            {
+                const auto headerPos = Pos::from(mLastCoordinates.tabHeaderPos);
+
+                if (screen.isImageThere(headerPos, mLootActivePattern))
+                    return LootTabState::Active;
+
+                if (screen.isImageThere(headerPos, mLootInactivePattern))
+                    return LootTabState::Inactive;
+
+                if (screen.isImageThere(headerPos, mLootInactiveRedPattern))
+                    return LootTabState::InactiveRed;
+
+                return LootTabState::NotVisible;
+            }
+
+
             bool LootTabProvider::tabHasMoved(const graphics::Image& screen) const
             {
                 return !screen.isImageThere(Pos::from(mLastCoordinates.tabHeaderPos),
                                             mLootActivePattern);
             }
 
-            boost::optional<graphics::Image> LootTabProvider::getTab()
+            LootTabData LootTabProvider::getTab()
             {
                 const auto screen = getScreen();
 
@@ -31,12 +49,17 @@ namespace cdl
                     const auto newCoordinates = mLootTabFinder.findCoordinates(screen);
 
                     if (!newCoordinates)
-                        return{};
+                        return LootTabData{ {}, LootTabState::NotVisible };
 
                     mLastCoordinates = *newCoordinates;
                 }
 
-                return screen.getSprite(mLastCoordinates.tabArea);
+                LootTabData ret;
+
+                ret.state = getTabState(screen);
+                ret.tab = screen.getSprite(mLastCoordinates.tabArea);
+
+                return ret;
             }
 
             graphics::Image LootTabProvider::getScreen() const
