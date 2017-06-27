@@ -6,8 +6,9 @@ project(${PROJECT_NAME_STR})
 
 set(EXT_PROJECTS_DIR ${PROJECT_SOURCE_DIR}/external_projects)
 
-set(BOOST_ROOT C:/moje/libs/boost_1_61_0)
-find_package(Boost REQUIRED)
+set(Boost_USE_STATIC_LIBS   ON)
+set(BOOST_ROOT $ENV{BOOST_DIR} )
+find_package(Boost COMPONENTS thread REQUIRED)
 if (NOT Boost_FOUND)
     message (ERROR "Boost not found!")
 endif()

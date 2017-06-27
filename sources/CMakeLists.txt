@@ -17,6 +17,9 @@ set (inc
         ${inc_dir}/loot/LootFilter.hpp
         ${inc_dir}/loot/LootData.hpp
         
+        ${inc_dir}/loot/parse/ParsedLootLine.hpp
+        ${inc_dir}/loot/parse/LootLineParser.hpp
+
         ${inc_dir}/loot/tab/TabLootReader.hpp
         ${inc_dir}/loot/tab/LootTabCoordinates.hpp
         ${inc_dir}/loot/tab/LootTabProvider.hpp
@@ -58,6 +61,8 @@ set (src
 
         ${src_dir}/loot/NewLootProvider.cpp
         ${src_dir}/loot/LootFilter.cpp
+
+        ${src_dir}/loot/parse/LootLineParser.cpp
         
         ${src_dir}/loot/tab/LootTabFinder.cpp
         ${src_dir}/loot/tab/LootTabProvider.cpp
