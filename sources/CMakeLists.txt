@@ -13,6 +13,7 @@ set (inc
         ${inc_dir}/font/db/CharacterDb.hpp
         
         ${inc_dir}/loot/ILootObserver.hpp
+        ${inc_dir}/loot/ILootStatsObserver.hpp
         ${inc_dir}/loot/NewLootProvider.hpp
         ${inc_dir}/loot/LootFilter.hpp
         ${inc_dir}/loot/LootData.hpp
