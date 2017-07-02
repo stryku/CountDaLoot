@@ -26,7 +26,7 @@ namespace cdl
             void stop();
 
         private:
-            static const size_t kSleep = static_cast<size_t>(100);
+            static const size_t kSleep = static_cast<size_t>(300);
 
             std::function<void()> getCallback();
 
