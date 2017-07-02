@@ -7,13 +7,20 @@ include_directories(${GTEST_INCLUDE_DIRS} ${GMOCK_INCLUDE_DIRS} ${COMMON_INCLUDE
 set (test_src_dir ${src_root}/tests)
 set (test_inc_dir ${test_src_dir}/details)
 
+add_subdirectory(utils)
 
+set(TEST_DEPENDENCIES
+    ${src_dir}/utils/string.cpp
+    )
 
 set(TEST_SRC_FILES 
-	${test_src_dir}/loot/LootTabReaderTests.cpp
-    ${test_src_dir}/main.cpp)
+    ${test_src_dir}/main.cpp
+    ${test_utils_src}
     
-set(TEST_INC_FILES )
+    ${TEST_DEPENDENCIES}
+    )
+    
+set(TEST_INC_FILES)
 
 include_directories(${TEST_INC_FILES})
 
