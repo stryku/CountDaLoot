@@ -21,7 +21,6 @@ namespace
         }
     }
 
-
     std::vector<std::string> split(const std::string &s, char delim) {
         std::vector<std::string> elems;
         split(s, delim, std::back_inserter(elems));
@@ -35,9 +34,20 @@ namespace cdl
     {
         namespace parse
         {
-            ParsedLootLine LootLineParser::parse(const std::string& line) const
+            std::string LootLineParser::removePreyInfo(const std::string& line) const
+            {
+                return line.substr(0, line.find_last_of('('));
+            }
+
+            ParsedLootLine LootLineParser::parse(std::string line) const
             {
                 ParsedLootLine parsed;
+
+                if (isWithPrey(line))
+                {
+                    parsed.withPrey = isWithPrey(line);
+                    line = removePreyInfo(line);
+                }
 
                 parsed.monster = getMonsterName(line);
                 const auto strItems = getStrItems(line);
@@ -69,7 +79,6 @@ namespace cdl
                 return ld;
             }
 
-
             std::vector<std::string> LootLineParser::getStrItems(const std::string& line) const
             {
                 const auto semicolonPos = line.find(':');
@@ -89,6 +98,11 @@ namespace cdl
                 const auto semicolonPos = line.find(':');
 
                 return line.substr(0, semicolonPos);
+            }
+
+            bool LootLineParser::isWithPrey(const std::string& line) const
+            {
+                return line.find_last_of(')') != std::string::npos;
             }
         }
     }

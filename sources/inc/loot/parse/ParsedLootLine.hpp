@@ -15,6 +15,7 @@ namespace cdl
             {
                 std::string monster;
                 std::vector<LootData> items;
+                bool withPrey{ false };
             };
         }
     }
