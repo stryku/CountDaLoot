@@ -43,6 +43,10 @@ set (inc
         ${inc_dir}/view/LootListUpdater.hpp
         ${inc_dir}/view/LootListViewType.hpp
         ${inc_dir}/view/LootTabStateLabelUpdater.hpp
+        
+        ${inc_dir}/view/summary/MonsterMapSorter.hpp
+        ${inc_dir}/view/summary/SummaryMonstersUpdater.hpp
+        ${inc_dir}/view/summary/SummaryItemsUpdater.hpp
                     
             PARENT_SCOPE)
                     
@@ -76,5 +80,9 @@ set (src
 
         ${src_dir}/view/LootListUpdater.cpp
         ${src_dir}/view/LootTabStateLabelUpdater.cpp
+        
+        ${src_dir}/view/summary/MonsterMapSorter.cpp
+        ${src_dir}/view/summary/SummaryMonstersUpdater.cpp
+        ${src_dir}/view/summary/SummaryItemsUpdater.cpp
             
             PARENT_SCOPE)
