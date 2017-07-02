@@ -19,6 +19,12 @@ if (USE_CLIPBOARD)
     add_definitions(-DUSE_CLIPBOARD)
 endif()
 
+set(WITH_CONSOLE_VAR WIN32)
+option(WITH_CONSOLE "Build with console window" ON)
+if (WITH_CONSOLE)
+    set(WITH_CONSOLE_VAR )
+endif()
+
 set(CMAKE_PREFIX_PATH $ENV{QT_DIR})
 
 set(CDL_VERSION "\"v0.1\"" CACHE STRING "Version tag")
@@ -85,7 +91,7 @@ set(lib_name ${PROJECT_NAME_STR}_lib)
 add_library(${lib_name} STATIC ${src}
                                            ${inc})
                                     
-add_executable(${PROJECT_NAME_STR} ${src_qt}
+add_executable(${PROJECT_NAME_STR} ${WITH_CONSOLE_VAR} ${src_qt}
                                    ${inc_qt}
                                    ${qt_utils_inc}
                                    ${qt_utils_src}
