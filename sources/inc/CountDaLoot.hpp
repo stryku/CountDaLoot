@@ -5,6 +5,7 @@
 #include "loot/NewLootProvider.hpp"
 #include "ui/controls/Table.hpp"
 #include "loot/KilledMonstersData.hpp"
+#include "view/summary/SummaryUpdater.hpp"
 
 #include "mainwindow.h"
 #include <QApplication>
@@ -31,5 +32,6 @@ namespace cdl
         loot::NewLootProvider mNewLootProvider;
         ui::controls::Table<1> mInterestingItemsTable;
         ui::controls::Table<2> mSummaryMonstersTable;
+        view::summary::SummaryUpdater mSummaryUpdater;
     };
 }

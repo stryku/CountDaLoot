@@ -1,10 +1,10 @@
-#include "view/SummaryItemsUpdater.hpp"
+#include "view/summary/SummaryItemsUpdater.hpp"
 
 namespace cdl
 {
     namespace view
     {
-        class SummaryMonstersUpdater
+       /* class SummaryMonstersUpdater
         {
         public:
             explicit SummaryMonstersUpdater(ui::controls::Table<2>& table);
@@ -14,6 +14,6 @@ namespace cdl
 
         private:
             ui::controls::Table<2>& mTable;
-        };
+        };*/
     }
 }

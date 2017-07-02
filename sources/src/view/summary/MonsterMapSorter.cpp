@@ -22,7 +22,7 @@ namespace cdl
                     return lhs.second > rhs.second;
                 };
 
-                std::sort(std::cbegin(container), std::cend(container), pred);
+                std::sort(std::begin(container), std::end(container), pred);
 
                 return container;
             }

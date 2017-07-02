@@ -1,5 +1,7 @@
 #pragma once
 
+#include "utils/string.hpp"
+
 #include <QTableView>
 #include <QStandardItemModel>
 #include <QList>
@@ -26,6 +28,7 @@ namespace cdl
                     view->setSelectionBehavior(QAbstractItemView::SelectRows);
                     view->horizontalHeader()->setDragEnabled(true);
                     view->horizontalHeader()->setDragDropMode(QAbstractItemView::InternalMove);
+                    view->verticalHeader()->hide();
                 }
 
                 void clear()
@@ -54,8 +57,7 @@ namespace cdl
                 template <typename ...Args>
                 void set(const size_t row, const Args&... args)
                 {
-                    const std::array<std::string,
-                                     sizeof...(Args)> items = { args... };
+                    const auto items = utils::string::toStringArray(args...);
 
                     for (size_t i = 0; i < items.size(); ++i)
                     {

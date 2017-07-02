@@ -40,11 +40,16 @@ set (inc
         ${inc_dir}/thread/ThreadWorker.hpp
 
         ${inc_dir}/ui/controls/Table.hpp
+        
+        ${inc_dir}/utils/ObserversContainer.hpp
+        ${inc_dir}/utils/string.hpp
+        ${inc_dir}/utils/traits.hpp
 
         ${inc_dir}/view/LootListUpdater.hpp
         ${inc_dir}/view/LootListViewType.hpp
         ${inc_dir}/view/LootTabStateLabelUpdater.hpp
         
+        ${inc_dir}/view/summary/SummaryUpdater.hpp
         ${inc_dir}/view/summary/MonsterMapSorter.hpp
         ${inc_dir}/view/summary/SummaryMonstersUpdater.hpp
         ${inc_dir}/view/summary/SummaryItemsUpdater.hpp
@@ -79,9 +84,12 @@ set (src
 
         ${src_dir}/thread/ThreadWorker.cpp
 
+        ${src_dir}/utils/string.cpp
+
         ${src_dir}/view/LootListUpdater.cpp
         ${src_dir}/view/LootTabStateLabelUpdater.cpp
         
+        ${src_dir}/view/summary/SummaryUpdater.cpp
         ${src_dir}/view/summary/MonsterMapSorter.cpp
         ${src_dir}/view/summary/SummaryMonstersUpdater.cpp
         ${src_dir}/view/summary/SummaryItemsUpdater.cpp
