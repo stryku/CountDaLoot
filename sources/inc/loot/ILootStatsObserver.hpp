@@ -13,7 +13,7 @@ namespace cdl
             virtual ~ILootStatsObserver() {}
 
             virtual void notify(const std::unordered_map<std::string, size_t>& monsterKillCount,
-                                const std::unordered_map<std::string, std::unordered_map<std::string, size_t>>& monstersLootStats) = 0;
+                                const std::unordered_map<std::string, size_t>& lootStats) = 0;
         };
     }
 }

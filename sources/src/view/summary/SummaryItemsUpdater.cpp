@@ -4,16 +4,24 @@ namespace cdl
 {
     namespace view
     {
-       /* class SummaryMonstersUpdater
+        namespace summary
         {
-        public:
-            explicit SummaryMonstersUpdater(ui::controls::Table<2>& table);
+            SummaryItemsUpdater::SummaryItemsUpdater(ui::controls::Table<2>& table)
+                : mTable{ table }
+            {}
 
-        public:
-            void update(const std::unordered_map<std::string, size_t>& mMonsterCount);
+            void SummaryItemsUpdater::update(const std::unordered_map<std::string, size_t>& lootStats)
+            {
+                mTable.clear();
 
-        private:
-            ui::controls::Table<2>& mTable;
-        };*/
+                for (const auto& pair : lootStats)
+                {
+                    const auto& item = pair.first;
+                    const auto& count = pair.second;
+
+                    mTable.add(item, count);
+                }
+            }
+        }
     }
 }

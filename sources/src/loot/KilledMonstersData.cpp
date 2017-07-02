@@ -11,7 +11,7 @@ namespace cdl
         void KilledMonsterData::notify(const std::vector<std::string>& lines)
         {
             updateStats(lines);
-            mStatsObsergers.notify(mMonsterCount, mMonstersLoot);
+            mStatsObsergers.notify(mMonsterCount, mItemsStats);
         }
 
         void KilledMonsterData::registerStatsObserver(ILootStatsObserver& observer)
@@ -30,7 +30,10 @@ namespace cdl
                 ++mMonsterCount[parsed.monster];
 
                 for (const auto& item : parsed.items)
+                {
                     mMonstersLoot[parsed.monster][item.item] += item.amount;
+                    mItemsStats[item.item] += item.amount;
+                }
             }
         }
     }

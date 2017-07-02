@@ -32,6 +32,7 @@ namespace cdl
         loot::NewLootProvider mNewLootProvider;
         ui::controls::Table<1> mInterestingItemsTable;
         ui::controls::Table<2> mSummaryMonstersTable;
+        ui::controls::Table<2> mSummaryItemsTable;
         view::summary::SummaryUpdater mSummaryUpdater;
     };
 }

@@ -147,11 +147,14 @@ namespace cdl
             for (int i = 0; i < height; i++)
             {
                 file.read(data, row_padded);
-                int read = file.gcount();
+                const auto read = file.gcount();
                 for (int j = 0; j < width * 3; j += 3)
                 {
 
-                    const Rgba pixel{ data[j], data[j + 1], data[j + 2], 255 };
+                    const Rgba pixel{ static_cast<uint8_t>(data[j]),
+                                      static_cast<uint8_t>(data[j + 1]), 
+                                      static_cast<uint8_t>(data[j + 2]), 
+                                      static_cast<uint8_t>(255) };
                     ret.pixel(j/3,height - 1 - i) = pixel;
                 }
             }

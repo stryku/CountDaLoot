@@ -10,16 +10,19 @@ namespace cdl
 {
     namespace view
     {
-        class SummaryMonstersUpdater
+        namespace summary
         {
-        public:
-            explicit SummaryMonstersUpdater(ui::controls::Table<2>& table);
+            class SummaryItemsUpdater
+            {
+            public:
+                explicit SummaryItemsUpdater(ui::controls::Table<2>& table);
 
-        public:
-            void update(const std::unordered_map<std::string, size_t>& mMonsterCount);
+            public:
+                void update(const std::unordered_map<std::string, size_t>& lootStats);
 
-        private:
-            ui::controls::Table<2>& mTable;
-        };
+            private:
+                ui::controls::Table<2>& mTable;
+            };
+        }
     }
 }

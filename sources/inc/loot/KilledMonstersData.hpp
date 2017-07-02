@@ -22,6 +22,7 @@ namespace cdl
 
             std::unordered_map<std::string, size_t> mMonsterCount;
             std::unordered_map<std::string, std::unordered_map<std::string, size_t>> mMonstersLoot;
+            std::unordered_map<std::string, size_t> mItemsStats;
             utils::ObserversContainer<ILootStatsObserver> mStatsObsergers;
         };
     }
