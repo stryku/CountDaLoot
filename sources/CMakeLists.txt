@@ -16,6 +16,7 @@ set (inc
         ${inc_dir}/loot/NewLootProvider.hpp
         ${inc_dir}/loot/LootFilter.hpp
         ${inc_dir}/loot/LootData.hpp
+        ${inc_dir}/loot/KilledMonstersData.hpp
         
         ${inc_dir}/loot/parse/ParsedLootLine.hpp
         ${inc_dir}/loot/parse/LootLineParser.hpp
@@ -61,6 +62,7 @@ set (src
 
         ${src_dir}/loot/NewLootProvider.cpp
         ${src_dir}/loot/LootFilter.cpp
+        ${src_dir}/loot/KilledMonstersData.cpp
 
         ${src_dir}/loot/parse/LootLineParser.cpp
         

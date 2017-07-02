@@ -4,6 +4,7 @@
 #include "view/LootTabStateLabelUpdater.hpp"
 #include "loot/NewLootProvider.hpp"
 #include "ui/controls/Table.hpp"
+#include "loot/KilledMonstersData.hpp"
 
 #include "mainwindow.h"
 #include <QApplication>
@@ -26,6 +27,7 @@ namespace cdl
         MainWindow mWindow;
         view::LootListUpdater mLootListUpdater;
         view::LootTabStateLabelUpdater mLootTabStateLabelUpdater;
+        loot::KilledMonsterData mKilledMonsterData;
         loot::NewLootProvider mNewLootProvider;
         ui::controls::Table<1> mInterestingItemsTable;
     };

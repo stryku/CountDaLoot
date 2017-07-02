@@ -10,6 +10,7 @@ namespace cdl
         , mInterestingItemsTable{ mWindow.getUi().ItemsSettingsTtableViewItems, {"Item"} }
     {
         mNewLootProvider.registerObserver(mLootListUpdater);
+        mNewLootProvider.registerObserver(mKilledMonsterData);
         mNewLootProvider.registerTabStateObserver(mLootTabStateLabelUpdater);
 
         mNewLootProvider.start();
