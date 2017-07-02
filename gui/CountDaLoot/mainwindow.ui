@@ -33,7 +33,7 @@
       </widget>
       <widget class="QTabWidget" name="tabWidget">
        <property name="currentIndex">
-        <number>0</number>
+        <number>2</number>
        </property>
        <widget class="QWidget" name="tab">
         <attribute name="title">
@@ -140,13 +140,33 @@
              <string>Items</string>
             </property>
            </widget>
-           <widget class="QTableView" name="SummaryTableViewItems"/>
+           <widget class="QTableView" name="SummaryTableViewItems">
+            <attribute name="verticalHeaderVisible">
+             <bool>false</bool>
+            </attribute>
+            <attribute name="verticalHeaderDefaultSectionSize">
+             <number>20</number>
+            </attribute>
+            <attribute name="verticalHeaderMinimumSectionSize">
+             <number>20</number>
+            </attribute>
+           </widget>
            <widget class="QLabel" name="label_3">
             <property name="text">
              <string>Monsters</string>
             </property>
            </widget>
-           <widget class="QTableView" name="SummaryTableViewMonsters"/>
+           <widget class="QTableView" name="SummaryTableViewMonsters">
+            <attribute name="verticalHeaderVisible">
+             <bool>false</bool>
+            </attribute>
+            <attribute name="verticalHeaderDefaultSectionSize">
+             <number>20</number>
+            </attribute>
+            <attribute name="verticalHeaderMinimumSectionSize">
+             <number>20</number>
+            </attribute>
+           </widget>
           </widget>
          </item>
         </layout>
