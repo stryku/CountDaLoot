@@ -72,7 +72,7 @@ set (src
         
         ${src_dir}/text/TextReader.cpp
 
-        ${src_dir}/thread/ThreadWorker.cpp 
+        ${src_dir}/thread/ThreadWorker.cpp
 
         ${src_dir}/view/LootListUpdater.cpp
         ${src_dir}/view/LootTabStateLabelUpdater.cpp

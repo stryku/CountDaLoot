@@ -3,6 +3,8 @@
 #include "loot/LootData.hpp"
 #include "loot/parse/ParsedLootLine.hpp"
 
+#include <boost/algorithm/string.hpp>
+
 #include <algorithm>
 #include <sstream>
 #include <iterator>
@@ -54,13 +56,15 @@ namespace cdl
             {
                 if (item[0] == ' ')
                     item = item.substr(1);
-                std::istringstream iss(item);
                 LootData ld;
 
                 if (isdigit(item[0]))
-                    iss >> ld.amount;
+                {
+                    std::istringstream{ item } >> ld.amount;
+                    item = item.substr(item.find(' '));
+                }
 
-                ld.item = iss.str();
+                ld.item = boost::algorithm::trim_copy(item);
 
                 return ld;
             }
@@ -74,9 +78,13 @@ namespace cdl
 
             std::string LootLineParser::getMonsterName(std::string line) const
             {
-                const auto kLootOf = std::string{ "Loot of a " };
+                const auto kLootOfA = std::string{ "Loot of a " };
+                const auto kLootOfAn = std::string{ "Loot of an " };
 
-                line = line.substr(std::size(kLootOf));
+                if(boost::algorithm::istarts_with(line, kLootOfAn))
+                    line = line.substr(std::size(kLootOfAn));
+                else if(boost::algorithm::istarts_with(line, kLootOfA))
+                    line = line.substr(std::size(kLootOfA));
 
                 const auto semicolonPos = line.find(':');
 
