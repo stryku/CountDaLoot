@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 2.8.12)
+cmake_minimum_required (VERSION 3.9)
 
 set(PROJECT_NAME_STR CountDaLoot)
 
@@ -8,7 +8,7 @@ set(EXT_PROJECTS_DIR ${PROJECT_SOURCE_DIR}/external_projects)
 
 set(Boost_USE_STATIC_LIBS   ON)
 set(BOOST_ROOT $ENV{BOOST_DIR} )
-find_package(Boost COMPONENTS thread REQUIRED)
+find_package(Boost REQUIRED)
 if (NOT Boost_FOUND)
     message (ERROR "Boost not found!")
 endif()
@@ -19,7 +19,7 @@ if (USE_CLIPBOARD)
     add_definitions(-DUSE_CLIPBOARD)
 endif()
 
-set( CMAKE_PREFIX_PATH C:/Qt/Qt5.9.0/5.9/msvc2015)
+set(CMAKE_PREFIX_PATH $ENV{QT_DIR})
 
 set(CDL_VERSION "\"v0.1\"" CACHE STRING "Version tag")
 add_definitions(-DCDL_VERSION=${CDL_VERSION})
@@ -79,16 +79,19 @@ source_group(TREE ${src_root} FILES ${src_qt}
                                     ${qt_utils_src}
                                     ${src}
                                     ${inc})
-
+                                    
+                                    
+set(lib_name ${PROJECT_NAME_STR}_lib)
+add_library(${lib_name} STATIC ${src}
+                                           ${inc})
+                                    
 add_executable(${PROJECT_NAME_STR} ${src_qt}
                                    ${inc_qt}
                                    ${qt_utils_inc}
                                    ${qt_utils_src}
-                                   ${src}
-                                   ${inc} 
                                    $<TARGET_OBJECTS:MocObjects>)
 						  
-target_link_libraries (${PROJECT_NAME_STR} Qt5::Widgets Qt5::UiTools ntdll.lib)
+target_link_libraries (${PROJECT_NAME_STR} ${lib_name} Qt5::Widgets Qt5::UiTools ntdll.lib)
 
 
 add_subdirectory(${EXT_PROJECTS_DIR}/gtest)

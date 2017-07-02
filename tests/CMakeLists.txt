@@ -7,24 +7,21 @@ include_directories(${GTEST_INCLUDE_DIRS} ${GMOCK_INCLUDE_DIRS} ${COMMON_INCLUDE
 set (test_src_dir ${src_root}/tests)
 set (test_inc_dir ${test_src_dir}/details)
 
-add_subdirectory(utils)
-
-set(TEST_DEPENDENCIES
-    ${src_dir}/utils/string.cpp
-    )
-
 set(TEST_SRC_FILES 
     ${test_src_dir}/main.cpp
-    ${test_utils_src}
-    
-    ${TEST_DEPENDENCIES}
     )
     
 set(TEST_INC_FILES)
 
 include_directories(${TEST_INC_FILES})
 
-add_executable(${PROJECT_TEST_NAME} ${TEST_SRC_FILES} ${TEST_INC_FILES})
+add_subdirectory(loot)
+
+add_executable(${PROJECT_TEST_NAME} 
+                                    ${TEST_SRC_FILES} 
+                                    ${TEST_INC_FILES}
+              )
+                                    
 add_dependencies(${PROJECT_TEST_NAME} googletest googlemock)
 
 if(NOT WIN32 OR MINGW)
@@ -49,4 +46,4 @@ else()
         )
 endif()
 
-target_link_libraries(${PROJECT_TEST_NAME} ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(${PROJECT_TEST_NAME} ${CMAKE_THREAD_LIBS_INIT} ${lib_name})
