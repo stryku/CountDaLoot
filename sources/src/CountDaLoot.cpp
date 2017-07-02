@@ -8,6 +8,7 @@ namespace cdl
         , mLootListUpdater{ *mWindow.getUi().LootTextEdit }
         , mLootTabStateLabelUpdater{ *mWindow.getUi().labelLootTabStatus }
         , mInterestingItemsTable{ mWindow.getUi().ItemsSettingsTtableViewItems, {"Item"} }
+        , mSummaryMonstersTable{ mWindow.getUi().SummaryTableViewMonsters, {"Monster", "Kill count" } }
     {
         mNewLootProvider.registerObserver(mLootListUpdater);
         mNewLootProvider.registerObserver(mKilledMonsterData);

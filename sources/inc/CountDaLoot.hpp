@@ -30,5 +30,6 @@ namespace cdl
         loot::KilledMonsterData mKilledMonsterData;
         loot::NewLootProvider mNewLootProvider;
         ui::controls::Table<1> mInterestingItemsTable;
+        ui::controls::Table<2> mSummaryMonstersTable;
     };
 }
