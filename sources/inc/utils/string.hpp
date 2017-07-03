@@ -24,6 +24,13 @@ namespace cdl
                 return std::to_string(value);
             }
 
+            template <typename T>
+            typename std::enable_if_t<std::is_enum<T>::value, std::string>
+                toString(const T &value)
+            {
+                return std::to_string(static_cast<int>(value));
+            }
+
             std::string toString(bool value);
 
             template <typename ...Args>

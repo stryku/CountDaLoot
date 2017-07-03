@@ -2,11 +2,11 @@
 
 #include "log/condition/LoggerCondition.hpp"
 
-namespace Amb
+namespace cdl
 {
-    namespace Log
+    namespace log
     {
-        namespace Condition
+        namespace condition
         {
             template <typename WrappedType>
             class LogDifferentThanLastCondition : public LoggerCondition<LogDifferentThanLastCondition<WrappedType>, WrappedType>

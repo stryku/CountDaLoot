@@ -2,9 +2,9 @@
 
 #include <vector>
 
-namespace Amb
+namespace cdl
 {
-    namespace Log
+    namespace log
     {
         template <typename Condition, typename Logger, typename ...LogArgs>
         class ConditionalLogger
@@ -22,6 +22,7 @@ namespace Amb
                 condition.willLogThis(logArgs...);
                 logger.log(logArgs...);
             }
+
             void setExternalBool(bool cond)
             {
                 condition.setExternalBool(cond);

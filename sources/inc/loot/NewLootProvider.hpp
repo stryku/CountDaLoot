@@ -2,6 +2,7 @@
 
 #include "loot/tab/LootTabProvider.hpp"
 #include "thread/ThreadWorker.hpp"
+#include "log/CommonLoggers.hpp"
 
 #include <vector>
 
@@ -35,6 +36,7 @@ namespace cdl
             thread::ThreadWorker mThreadWorker;
             tab::LootTabProvider mLootTabProvider;
             std::vector<std::string> mLoot;
+            log::DifferentThanLastLogger<tab::LootTabState> mTabStateLogger{ "logger", "log/log.log" };
         };
     }
 }

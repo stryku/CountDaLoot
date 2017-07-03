@@ -19,7 +19,7 @@ namespace cdl
             template <typename ...Args>
             void log(const Args&... args)
             {
-                logger->info(ToStringConverter::convert(std::forward<Args>(args)...));
+                logger->info(ToStringConverter::convert(args...));
                 logger->flush();
             }
 

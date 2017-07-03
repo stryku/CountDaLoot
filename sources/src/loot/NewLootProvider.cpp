@@ -43,6 +43,8 @@ namespace cdl
             {
                 const auto tabData = mLootTabProvider.getTab();
 
+                mTabStateLogger.log(tabData.state);
+
                 for (auto observer : mTabStateObservers)
                     observer->notify(tabData.state);
 

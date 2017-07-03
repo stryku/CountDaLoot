@@ -12,6 +12,7 @@ set (inc
         ${inc_dir}/font/db/Character.hpp
         ${inc_dir}/font/db/CharacterDb.hpp
         
+        ${inc_dir}/log/CommonLoggers.hpp
         ${inc_dir}/log/Logger.hpp
         ${inc_dir}/log/ConditionalLogger.hpp
         

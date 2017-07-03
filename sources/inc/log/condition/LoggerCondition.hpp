@@ -2,11 +2,11 @@
 
 #include <utility>
 
-namespace Amb
+namespace cdl
 {
-    namespace Log
+    namespace log
     {
-        namespace Condition
+        namespace condition
         {
             template <typename DerivedCondition, typename ...Args>
             class LoggerCondition
