@@ -1,14 +1,14 @@
 #pragma once
 
-#include "utils/SimpleToStringConverter.hpp"
+#include "log/converter/SimpleToStringConverter.hpp"
 
 #include <spdlog/spdlog.h>
 
-namespace Amb
+namespace cdl
 {
-    namespace Log
+    namespace log
     {
-        template <typename ToStringConverter = Amb::Utils::SimpleToStringConverter>
+        template <typename ToStringConverter = converter::SimpleToStringConverter>
         class Logger
         {
         public:
@@ -19,7 +19,7 @@ namespace Amb
             template <typename ...Args>
             void log(const Args&... args)
             {
-                logger->info(ToStringConverter::convert(args...)); // todo std::forward
+                logger->info(ToStringConverter::convert(std::forward<Args>(args)...));
                 logger->flush();
             }
 

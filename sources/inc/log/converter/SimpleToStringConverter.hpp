@@ -1,18 +1,21 @@
 #pragma once
 
-#include "utils/string/toString.hpp"
+#include "utils/string.hpp"
 
-namespace Amb
+namespace cdl
 {
-    namespace Utils
+    namespace log
     {
-        struct SimpleToStringConverter
+        namespace converter
         {
-            template <typename Type>
-            static auto convert(const Type& type)
+            struct SimpleToStringConverter
             {
-                return utils::toString(type);
-            }
-        };
+                template <typename Type>
+                static auto convert(const Type& type)
+                {
+                    return utils::string::toString(type);
+                }
+            };
+        }
     }
 }

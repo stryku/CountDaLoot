@@ -13,6 +13,10 @@ set (inc
         ${inc_dir}/font/db/CharacterDb.hpp
         
         ${inc_dir}/log/Logger.hpp
+        ${inc_dir}/log/ConditionalLogger.hpp
+        
+        ${inc_dir}/log/condition/LogDifferentThanLastCondition.hpp
+        ${inc_dir}/log/condition/LoggerCondition.hpp
         
         ${inc_dir}/log/converter/SimpleToStringConverter.hpp
         
