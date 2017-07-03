@@ -12,6 +12,10 @@ set (inc
         ${inc_dir}/font/db/Character.hpp
         ${inc_dir}/font/db/CharacterDb.hpp
         
+        ${inc_dir}/log/Logger.hpp
+        
+        ${inc_dir}/log/converter/SimpleToStringConverter.hpp
+        
         ${inc_dir}/loot/ILootObserver.hpp
         ${inc_dir}/loot/ILootStatsObserver.hpp
         ${inc_dir}/loot/NewLootProvider.hpp

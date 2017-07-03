@@ -43,6 +43,7 @@ set (inc_dir ${src_root}/sources/inc)
 set (ui_dir ${src_root}/gui/CountDaLoot)
 set (resources_dir ${src_root}/resources)
 set (install_dir ${src_root}/bin)
+set (3rdparty_include ${src_root}/3rdparty/include)
 
 message (${program_name} " will be installed in:")
 message (${install_dir})
@@ -50,7 +51,9 @@ message (${install_dir})
 include_directories (${inc_dir} 
                      ${inc_dir_qt}
                      ${src_root}/qt/inc
-                     ${Qt5UiTools_INCLUDE_DIRS})
+                     ${Qt5UiTools_INCLUDE_DIRS}
+                     ${3rdparty_include}
+                     )
            
 add_subdirectory(qt)
 
@@ -88,8 +91,9 @@ source_group(TREE ${src_root} FILES ${src_qt}
                                     
                                     
 set(lib_name ${PROJECT_NAME_STR}_lib)
-add_library(${lib_name} STATIC ${src}
-                                           ${inc})
+add_library(${lib_name} STATIC 
+                ${src}
+                ${inc})
                                     
 add_executable(${PROJECT_NAME_STR} ${WITH_CONSOLE_VAR} ${src_qt}
                                    ${inc_qt}
