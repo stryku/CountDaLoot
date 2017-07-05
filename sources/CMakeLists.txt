@@ -14,12 +14,17 @@ set (inc
         
         ${inc_dir}/log/CommonLoggers.hpp
         ${inc_dir}/log/Logger.hpp
+        ${inc_dir}/log/StructLogger.hpp
         ${inc_dir}/log/ConditionalLogger.hpp
         
         ${inc_dir}/log/condition/LogDifferentThanLastCondition.hpp
         ${inc_dir}/log/condition/LoggerCondition.hpp
         
         ${inc_dir}/log/converter/SimpleToStringConverter.hpp
+        ${inc_dir}/log/converter/RectToStringConverter.hpp
+        ${inc_dir}/log/converter/PosToStringConverter.hpp
+        ${inc_dir}/log/converter/RgbaToStringConverter.hpp
+        ${inc_dir}/log/converter/SizeToStringConverter.hpp
         
         ${inc_dir}/loot/ILootObserver.hpp
         ${inc_dir}/loot/ILootStatsObserver.hpp

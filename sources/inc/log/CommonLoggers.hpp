@@ -10,6 +10,8 @@ namespace cdl
 {
     namespace log
     {
+        using SimpleLogger = Logger<>;
+
         template <typename WrappedType, typename LoggerType = Logger<>>
         using DifferentThanLastLogger = ConditionalLogger<condition::LogDifferentThanLastCondition<WrappedType>, 
                                                           LoggerType, 
