@@ -16,6 +16,8 @@ set (inc
         ${inc_dir}/log/Logger.hpp
         ${inc_dir}/log/StructLogger.hpp
         ${inc_dir}/log/ConditionalLogger.hpp
+        ${inc_dir}/log/LoggerType.hpp
+        ${inc_dir}/log/LoggerFactory.hpp
         
         ${inc_dir}/log/condition/LogDifferentThanLastCondition.hpp
         ${inc_dir}/log/condition/LoggerCondition.hpp
@@ -83,6 +85,8 @@ set (src
         
         ${src_dir}/font/db/Character.cpp
         ${src_dir}/font/db/CharacterDb.cpp
+        
+        ${src_dir}/log/LoggerFactory.cpp
 
         ${src_dir}/loot/NewLootProvider.cpp
         ${src_dir}/loot/LootFilter.cpp
