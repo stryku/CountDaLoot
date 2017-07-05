@@ -31,7 +31,10 @@ namespace cdl
             {
                 std::string ret;
 
-                { (ret += format(args))... };
+                const auto formatted = { format(args)... };
+
+                for (const auto& part : formatted)
+                    ret += part;
 
                 return ret;
             }

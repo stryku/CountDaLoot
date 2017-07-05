@@ -4,6 +4,7 @@
 #include "loot/tab/LootTabCoordinates.hpp"
 #include "loot/tab/LootTabFinder.hpp"
 #include "loot/tab/LootTabState.hpp"
+#include "log/StructLogger.hpp"
 
 namespace cdl
 {
@@ -30,6 +31,7 @@ namespace cdl
 
                 LootTabCoordinates mLastCoordinates;
                 LootTabFinder mLootTabFinder;
+                log::StructLogger mStructLogger;
             };
         }
     }

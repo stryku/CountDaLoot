@@ -15,6 +15,7 @@ namespace cdl
                 , mLootInactivePattern(data::DataProvider{}.getLootTabInactive())
                 , mLootInactiveRedPattern(data::DataProvider{}.getLootTabInactiveRed())
                 , mLastCoordinates{ Offset{0,0}, Rect{} }
+                , mStructLogger{ "default", "log/log.log" }
             {}
 
             LootTabState LootTabProvider::getTabState(const graphics::Image& screen) const
@@ -46,18 +47,26 @@ namespace cdl
 
                 if (tabHasMoved(screen))
                 {
+                    mStructLogger.log("Tab has moved. Last: ", mLastCoordinates.tabHeaderPos);
+
                     const auto newCoordinates = mLootTabFinder.findCoordinates(screen);
 
                     if (!newCoordinates)
+                    {
+                        mStructLogger.log("tab not found");
                         return LootTabData{ {}, LootTabState::NotVisible };
+                    }
 
                     mLastCoordinates = *newCoordinates;
+                    mStructLogger.log("Tab found. new coordinates: ", mLastCoordinates.tabHeaderPos, "new area: ", mLastCoordinates.tabArea);
                 }
 
                 LootTabData ret;
 
                 ret.state = getTabState(screen);
                 ret.tab = screen.getSprite(mLastCoordinates.tabArea);
+
+                mStructLogger.log("detected tab state: ", utils::string::toString((static_cast<int>(ret.state))));
 
                 return ret;
             }
