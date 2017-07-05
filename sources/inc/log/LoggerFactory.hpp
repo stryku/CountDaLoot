@@ -11,17 +11,17 @@ namespace cdl
         class LoggerFactory
         {
         public:
-            LoggerFactory(const std::string& loggerName, const std::string& path)
-                : mLogger{ spdlog::basic_logger_mt(loggerName, path) }
+            LoggerFactory(const std::string& path)
+                : mSink{ std::make_shared<spdlog::sinks::simple_file_sink_mt>(path) }
             {}
 
-            Logger create()
+            Logger create(const std::string& name = "general")
             {
-                return Logger{ mLogger };
+                return Logger{ std::make_shared<spdlog::logger>(name , mSink) };
             }
 
         private:
-            std::shared_ptr<spdlog::logger> mLogger;
+            std::shared_ptr<spdlog::sinks::simple_file_sink_mt> mSink;
         };
     }
 }

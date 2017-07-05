@@ -38,6 +38,7 @@ namespace cdl
             tab::LootTabProvider mLootTabProvider;
             std::vector<std::string> mLoot;
             log::DifferentThanLastLogger<tab::LootTabState> mTabStateLogger;
+            log::Logger mLogger;
         };
     }
 }

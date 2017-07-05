@@ -14,6 +14,7 @@ namespace cdl
     {
         NewLootProvider::NewLootProvider(log::LoggerFactory& factory)
             : mTabStateLogger{ factory }
+            , mLogger{ factory.create() }
         {}
 
         NewLootProvider::~NewLootProvider()
@@ -59,6 +60,11 @@ namespace cdl
 
                     if (!newLines.empty())
                     {
+                        mLogger.log("detected new lines:");
+
+                        for(const auto& line : newLines)
+                            mLogger.log(line);
+
                         for (auto observer : mObservers)
                             observer->notify(newLines);
 
