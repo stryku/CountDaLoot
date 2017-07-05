@@ -33,7 +33,7 @@ namespace cdl
 
                 void clear()
                 {
-                    model->clear();
+                    model->removeRows(0, model->rowCount());
                     createHeaders();
                 }
 
