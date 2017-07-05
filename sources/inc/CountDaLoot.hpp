@@ -6,6 +6,7 @@
 #include "ui/controls/Table.hpp"
 #include "loot/KilledMonstersData.hpp"
 #include "view/summary/SummaryUpdater.hpp"
+#include "log/LoggerFactory.hpp"
 
 #include "mainwindow.h"
 #include <QApplication>
@@ -26,6 +27,7 @@ namespace cdl
 
         QApplication mApplication;
         MainWindow mWindow;
+        log::LoggerFactory mLoggerFactory;
         view::LootListUpdater mLootListUpdater;
         view::LootTabStateLabelUpdater mLootTabStateLabelUpdater;
         loot::KilledMonsterData mKilledMonsterData;

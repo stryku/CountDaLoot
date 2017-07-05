@@ -5,8 +5,10 @@ namespace cdl
 {
     CountDaLoot::CountDaLoot(int argc, char* argv[])
         : mApplication{ argc, argv }
+        , mLoggerFactory{ "general", "log/general.log" }
         , mLootListUpdater{ *mWindow.getUi().LootTextEdit }
         , mLootTabStateLabelUpdater{ *mWindow.getUi().labelLootTabStatus }
+        , mNewLootProvider{ mLoggerFactory }
         , mInterestingItemsTable{ mWindow.getUi().ItemsSettingsTtableViewItems, {"Item"} }
         , mSummaryMonstersTable{ mWindow.getUi().SummaryTableViewMonsters,{ "Monster", "Kill count" } }
         , mSummaryItemsTable{ mWindow.getUi().SummaryTableViewItems, {"Item", "Drop count" } }

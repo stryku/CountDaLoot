@@ -1,36 +1,39 @@
 #pragma once
 
+#include "log/Logger.hpp"
+#include "log/LoggerFactory.hpp"
+
 #include <vector>
 
 namespace cdl
 {
     namespace log
     {
-        template <typename Condition, typename Logger, typename ...LogArgs>
+        template <typename Condition, typename LoggingParam>
         class ConditionalLogger
         {
         public:
-            ConditionalLogger(const std::string& loggerName, const std::string& path)
-                : logger{ loggerName, path }
+            ConditionalLogger(LoggerFactory& factory)
+                : mLogger{ factory.create() }
             {}
 
-            void log(const LogArgs& ...logArgs)
+            void log(const std::string& format, const LoggingParam& param)
             {
-                if (!condition.shouldLog(logArgs...))
+                if (!mCondition.shouldLog(param))
                     return;
 
-                condition.willLogThis(logArgs...);
-                logger.log(logArgs...);
+                mCondition.willLogThis(param);
+                mLogger.log(format, param);
             }
 
             void setExternalBool(bool cond)
             {
-                condition.setExternalBool(cond);
+                mCondition.setExternalBool(cond);
             }
 
         private:
-            Logger logger;
-            Condition condition;
+            Logger mLogger;
+            Condition mCondition;
         };
     }
 }

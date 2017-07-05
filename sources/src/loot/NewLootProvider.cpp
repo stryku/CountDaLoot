@@ -12,6 +12,10 @@ namespace cdl
 {
     namespace loot
     {
+        NewLootProvider::NewLootProvider(log::LoggerFactory& factory)
+            : mTabStateLogger{ factory }
+        {}
+
         NewLootProvider::~NewLootProvider()
         {
             stop();
@@ -43,7 +47,7 @@ namespace cdl
             {
                 const auto tabData = mLootTabProvider.getTab();
 
-                mTabStateLogger.log(tabData.state);
+                mTabStateLogger.log("detected tab state: {}", tabData.state);
 
                 for (auto observer : mTabStateObservers)
                     observer->notify(tabData.state);

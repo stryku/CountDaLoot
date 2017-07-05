@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 namespace cdl
 {
     namespace details
@@ -45,6 +47,11 @@ namespace cdl
             static PosImpl from(const PosImpl<RhsPointType> &rhs)
             {
                 return PosImpl{ static_cast<T>(rhs.x), static_cast<T>(rhs.y) };
+            }
+
+            std::string toString() const
+            {
+                return "x: " + std::to_string(x) + " y: " + std::to_string(y);
             }
         };
     }

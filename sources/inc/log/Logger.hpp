@@ -1,6 +1,6 @@
 #pragma once
 
-#include "log/converter/SimpleToStringConverter.hpp"
+#include "utils/string.hpp"
 
 #include <spdlog/spdlog.h>
 
@@ -8,23 +8,22 @@ namespace cdl
 {
     namespace log
     {
-        template <typename ToStringConverter = converter::SimpleToStringConverter>
         class Logger
         {
         public:
-            Logger(const std::string& loggerName, const std::string& path)
-                : logger{ spdlog::basic_logger_mt(loggerName, path) }
+            Logger(std::shared_ptr<spdlog::logger> logger)
+                : mLogger{ logger }
             {}
 
             template <typename ...Args>
             void log(const Args&... args)
             {
-                logger->info(ToStringConverter::convert(args...));
-                logger->flush();
+                mLogger->info(utils::string::toString(args).c_str()...);
+                mLogger->flush();
             }
 
         private:
-            std::shared_ptr<spdlog::logger> logger;
+            std::shared_ptr<spdlog::logger> mLogger;
         };
     }
 }

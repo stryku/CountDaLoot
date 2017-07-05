@@ -126,7 +126,6 @@ namespace cdl
         {
             Image ret;
 
-            int i;
             std::ifstream file{ path,  std::ifstream::binary };
 
             char info[54];

@@ -31,7 +31,14 @@ namespace cdl
                 return std::to_string(static_cast<int>(value));
             }
 
-            std::string toString(bool value);
+            template <typename T>
+            typename std::enable_if_t<traits::hasToString<std::decay_t<T>>::value, std::string>
+                toString(const T &value)
+            {
+                return value.toString();
+            }
+
+            //std::string toString(bool value);
 
             template <typename ...Args>
             auto toStringArray(const Args&... args)

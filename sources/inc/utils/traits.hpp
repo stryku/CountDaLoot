@@ -1,6 +1,7 @@
 #pragma once
 
 #include <type_traits>
+#include <string>
 
 namespace cdl
 {
@@ -8,6 +9,25 @@ namespace cdl
     {
         namespace traits
         {
+            template<typename C>
+            struct hasToString {
+            private:
+                template<typename T>
+                static constexpr auto check(T*)
+                    -> typename
+                    std::is_same<decltype(std::declval<T>().toString()),
+                                 std::string
+                    >::type;
+
+                template<typename>
+                static constexpr std::false_type check(...);
+
+                typedef decltype(check<C>(0)) type;
+
+            public:
+                static constexpr bool value = type::value;
+            };
+
             template <typename T>
             struct canCallStdToString
             {

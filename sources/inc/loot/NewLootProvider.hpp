@@ -20,6 +20,7 @@ namespace cdl
         class NewLootProvider
         {
         public:
+            explicit NewLootProvider(log::LoggerFactory& factory);
             ~NewLootProvider();
             void registerObserver(ILootObserver& observer);
             void registerTabStateObserver(tab::ILootTabStateObserver& observer);
@@ -36,7 +37,7 @@ namespace cdl
             thread::ThreadWorker mThreadWorker;
             tab::LootTabProvider mLootTabProvider;
             std::vector<std::string> mLoot;
-            log::DifferentThanLastLogger<tab::LootTabState> mTabStateLogger{ "logger", "log/log.log" };
+            log::DifferentThanLastLogger<tab::LootTabState> mTabStateLogger;
         };
     }
 }
