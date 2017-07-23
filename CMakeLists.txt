@@ -94,6 +94,8 @@ set(lib_name ${PROJECT_NAME_STR}_lib)
 add_library(${lib_name} STATIC 
                 ${src}
                 ${inc})
+            
+add_dependencies(${lib_name} MocObjects)
                                     
 add_executable(${PROJECT_NAME_STR} ${WITH_CONSOLE_VAR} ${src_qt}
                                    ${inc_qt}
