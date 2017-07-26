@@ -110,6 +110,7 @@ add_subdirectory(${EXT_PROJECTS_DIR}/gtest)
 add_subdirectory(tests)  
 
 install(TARGETS ${PROJECT_NAME_STR} DESTINATION  ${install_dir}/)
+install(FILES CHANGELOG.txt DESTINATION  ${install_dir}/)
 install(
     DIRECTORY ${resources_dir}/
     DESTINATION ${install_dir}
