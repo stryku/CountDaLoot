@@ -1,0 +1,4 @@
+build*
+*.pyc
+*.zip
+release_pw.py

@@ -1,0 +1,5 @@
+v0.1 - 07/26/17
+-loc: 4150
+-features:
+    -loot counting for single hunt
+
